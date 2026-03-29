@@ -2,13 +2,13 @@
   "id": "oddisz_cloning",
   "name": "Cloning",
   "author": "Oddisz",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Adds the cloning industry, which massively increases population growth on a planet. Due to lacking research about post-collapse biotechnology, clones are less healthy and more prone to acts of violence. As a result, Cloning gives an increasing big stability penalty.",
   "gameVersion": "0.98a-RC8",
   "jars": ["jars/cloning.jar"],
   "modPlugin": "cloning.plugin",
-  "modThreadId": "12345",
-  "updateCheckURL": "https://raw.githubusercontent.com/andrzejsokolowski/starsector-cloning/main/version.json",
+  "modThreadId": "35129",
+  "updateCheckURL": "https://raw.githubusercontent.com/andrzejsokolowski/starsector-cloning/main/cloning.version",
   "originalGameVersion": "0.98a-RC8",
   "dependencies": [
     {
