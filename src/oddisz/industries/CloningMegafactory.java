@@ -1,20 +1,20 @@
 package oddisz.industries;
 
-public class Cloning extends BaseCloning {
+public class CloningMegafactory extends BaseCloning {
 
     @Override
     protected String getBaseGrowthFieldId() {
-        return "baseGrowthTier2";
+        return "baseGrowthTier3";
     }
 
     @Override
     protected int getDefaultBaseGrowth() {
-        return 125;
+        return 250;
     }
 
     @Override
     protected String getIndustryName() {
-        return "Cloning";
+        return "Mass Cloning Megafactory";
     }
 
     @Override

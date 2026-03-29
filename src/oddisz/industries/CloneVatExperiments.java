@@ -1,24 +1,24 @@
 package oddisz.industries;
 
-public class Cloning extends BaseCloning {
+public class CloneVatExperiments extends BaseCloning {
 
     @Override
     protected String getBaseGrowthFieldId() {
-        return "baseGrowthTier2";
+        return "baseGrowthTier1";
     }
 
     @Override
     protected int getDefaultBaseGrowth() {
-        return 125;
+        return 50;
     }
 
     @Override
     protected String getIndustryName() {
-        return "Cloning";
+        return "Clone Vat Experiments";
     }
 
     @Override
     public boolean isAvailableToBuild() {
-        return false;
+        return true;
     }
 }

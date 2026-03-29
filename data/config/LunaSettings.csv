@@ -1,0 +1,6 @@
+modID,fieldID,fieldName,fieldType,defaultValue,minValue,maxValue,fieldDescription,tab
+oddisz_cloning,baseGrowthTier1,Base Growth (Clone Vat),Int,50,0,10000,Base population growth points added by Clone Vat Experiments per tick.,Cloning
+oddisz_cloning,baseGrowthTier2,Base Growth (Cloning),Int,125,0,10000,Base population growth points added by the Cloning Industry per tick.,Cloning
+oddisz_cloning,baseGrowthTier3,Base Growth (Megafactory),Int,250,0,10000,Base population growth points added by the Cloning Megafactory per tick.,Cloning
+oddisz_cloning,scalingFactor,Scaling Factor,Double,0.15,0.0,2.0,Controls how much colony size amplifies growth. Higher values make large colonies grow much faster.,Cloning
+oddisz_cloning,globalMult,Global Multiplier,Double,1.0,0.0,10.0,Global multiplier applied to all cloning industry growth.,Cloning
