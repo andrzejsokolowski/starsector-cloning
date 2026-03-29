@@ -1,0 +1,13 @@
+plugins { id 'java' }
+
+sourceSets.main.java.srcDirs = ['src']
+
+dependencies {
+    compileOnly fileTree(dir: "${starsectorPath}/starsector-core", include: '*.jar')
+}
+
+
+jar {
+    destinationDirectory = file('jars')
+    archiveFileName = 'cloning.jar'
+}

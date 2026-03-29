@@ -1,0 +1,14 @@
+# Gradle
+.gradle/
+build/
+
+# Compiled output
+out/
+build/
+
+# IntelliJ
+.idea/
+*.iml
+
+# Local build config (each dev sets their own path)
+gradle.properties

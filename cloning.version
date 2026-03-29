@@ -1,0 +1,14 @@
+
+{
+    "masterVersionFile":"https://raw.githubusercontent.com/andrzejsokolowski/starsector-cloning/main/cloning.version",
+    "modName":"Cloning",
+    "modThreadId":12345,
+    "modVersion":
+    {
+        "major":0,
+        "minor":0,
+        "patch":"1"
+    },
+	"starsectorVersion":"0.98a-RC8",
+	"directDownloadURL":"https://github.com/andrzejsokolowski/starsector-cloning/releases/latest/download/cloning.zip"
+}
