@@ -1,5 +1,7 @@
 package oddisz.industries;
 
+import com.fs.starfarer.api.Global;
+import com.fs.starfarer.api.campaign.econ.CommoditySpecAPI;
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
 import com.fs.starfarer.api.campaign.econ.MarketImmigrationModifier;
 import com.fs.starfarer.api.impl.campaign.econ.impl.BaseIndustry;
@@ -14,35 +16,41 @@ import lunalib.lunaSettings.LunaSettings;
 public abstract class BaseCloning extends BaseIndustry implements MarketImmigrationModifier {
 
     private static final String MOD_ID = "oddisz_cloning";
-
-    // Astral Ascension commodity ID — safe to reference even if mod is absent;
-    // getAICoreId() will simply never return this value in that case.
     private static final String OMEGA_CORE = "omega_core";
 
     private static final double DEFAULT_SCALING_FACTOR = 0.15;
     private static final double DEFAULT_GLOBAL_MULT = 1.0;
 
-    private static final int CREW_PRODUCTION = 3;
-    private static final int MARINES_PRODUCTION = 2;
-
     protected abstract String getBaseGrowthFieldId();
     protected abstract int getDefaultBaseGrowth();
     protected abstract String getIndustryName();
 
+    private boolean hasScaling() {
+        String coreId = getAICoreId();
+        return Commodities.ALPHA_CORE.equals(coreId) || OMEGA_CORE.equals(coreId);
+    }
+
+    private int computeCrewProduction() {
+        return market.getSize();
+    }
+
+    private int computeMarinesProduction() {
+        return Math.max(1, market.getSize() - 1);
+    }
+
     /**
-     * Alpha:  base × (1 + size × log10(size) × scalingFactor) × globalMult
-     * Omega:  same formula but scalingFactor is doubled
+     * Alpha/Omega: base × (1 + size × log10(size) × scalingFactor) × globalMult
+     * Omega doubles the scalingFactor.
      * Others: flat base × globalMult
      */
     protected int computeGrowthWeight() {
         int size = market.getSize();
         int base = getIntSetting(getBaseGrowthFieldId(), getDefaultBaseGrowth());
         double globalMult = getDoubleSetting("globalMult", DEFAULT_GLOBAL_MULT);
-        String coreId = getAICoreId();
 
-        if (Commodities.ALPHA_CORE.equals(coreId) || OMEGA_CORE.equals(coreId)) {
+        if (hasScaling()) {
             double scaling = getDoubleSetting("scalingFactor", DEFAULT_SCALING_FACTOR);
-            if (OMEGA_CORE.equals(coreId)) scaling *= 2.0;
+            if (OMEGA_CORE.equals(getAICoreId())) scaling *= 2.0;
             double sizeComponent = size * Math.log10(Math.max(size, 1));
             return (int) Math.round(base * (1.0 + sizeComponent * scaling) * globalMult);
         }
@@ -59,14 +67,8 @@ public abstract class BaseCloning extends BaseIndustry implements MarketImmigrat
         return val != null ? val : defaultValue;
     }
 
-    // --- AI Core overrides ---
+    // --- AI Core: upkeep ---
 
-    /**
-     * Gamma: -25% upkeep
-     * Beta:  -10% upkeep
-     * Alpha: -25% upkeep
-     * Omega: -50% upkeep
-     */
     @Override
     protected void applyAICoreToIncomeAndUpkeep() {
         String coreId = getAICoreId();
@@ -85,10 +87,86 @@ public abstract class BaseCloning extends BaseIndustry implements MarketImmigrat
         }
     }
 
-    // Suppress vanilla +1 supply / -1 demand defaults — we use our own effects instead
+    // Suppress vanilla +1 supply / -1 demand defaults
     @Override protected void applyAlphaCoreSupplyAndDemandModifiers() {}
     @Override protected void applyBetaCoreSupplyAndDemandModifiers() {}
     @Override protected void applyGammaCoreSupplyAndDemandModifiers() {}
+
+    // --- AI Core: descriptions ---
+
+    @Override
+    public void addAICoreSection(TooltipMakerAPI tooltip, String coreId, AICoreDescriptionMode mode) {
+        if (OMEGA_CORE.equals(coreId)) {
+            addOmegaCoreDescription(tooltip, mode);
+        } else {
+            super.addAICoreSection(tooltip, mode == null ? AICoreDescriptionMode.INDUSTRY_TOOLTIP : mode);
+        }
+    }
+
+    @Override
+    protected void addGammaCoreDescription(TooltipMakerAPI tooltip, AICoreDescriptionMode mode) {
+        float opad = 10f;
+        String pre = mode == AICoreDescriptionMode.MANAGE_CORE_DIALOG_LIST ? "Gamma-level AI core. "
+                : "Gamma-level AI core currently assigned. ";
+        String desc = pre + "Reduces upkeep cost by %s.";
+        if (mode == AICoreDescriptionMode.INDUSTRY_TOOLTIP || mode == AICoreDescriptionMode.MANAGE_CORE_TOOLTIP) {
+            CommoditySpecAPI spec = Global.getSettings().getCommoditySpec(Commodities.GAMMA_CORE);
+            TooltipMakerAPI text = tooltip.beginImageWithText(spec.getIconName(), 48);
+            text.addPara(desc, 0f, Misc.getHighlightColor(), "25%");
+            tooltip.addImageWithText(opad);
+        } else {
+            tooltip.addPara(desc, opad, Misc.getHighlightColor(), "25%");
+        }
+    }
+
+    @Override
+    protected void addBetaCoreDescription(TooltipMakerAPI tooltip, AICoreDescriptionMode mode) {
+        float opad = 10f;
+        String pre = mode == AICoreDescriptionMode.MANAGE_CORE_DIALOG_LIST ? "Beta-level AI core. "
+                : "Beta-level AI core currently assigned. ";
+        String desc = pre + "Reduces upkeep cost by %s. Produces crew and marines.";
+        if (mode == AICoreDescriptionMode.INDUSTRY_TOOLTIP || mode == AICoreDescriptionMode.MANAGE_CORE_TOOLTIP) {
+            CommoditySpecAPI spec = Global.getSettings().getCommoditySpec(Commodities.BETA_CORE);
+            TooltipMakerAPI text = tooltip.beginImageWithText(spec.getIconName(), 48);
+            text.addPara(desc, 0f, Misc.getHighlightColor(), "10%");
+            tooltip.addImageWithText(opad);
+        } else {
+            tooltip.addPara(desc, opad, Misc.getHighlightColor(), "10%");
+        }
+    }
+
+    @Override
+    protected void addAlphaCoreDescription(TooltipMakerAPI tooltip, AICoreDescriptionMode mode) {
+        float opad = 10f;
+        String pre = mode == AICoreDescriptionMode.MANAGE_CORE_DIALOG_LIST ? "Alpha-level AI core. "
+                : "Alpha-level AI core currently assigned. ";
+        String desc = pre + "Reduces upkeep cost by %s. Population growth now scales with colony size. "
+                + "Produces crew and marines.";
+        if (mode == AICoreDescriptionMode.INDUSTRY_TOOLTIP || mode == AICoreDescriptionMode.MANAGE_CORE_TOOLTIP) {
+            CommoditySpecAPI spec = Global.getSettings().getCommoditySpec(Commodities.ALPHA_CORE);
+            TooltipMakerAPI text = tooltip.beginImageWithText(spec.getIconName(), 48);
+            text.addPara(desc, 0f, Misc.getHighlightColor(), "25%");
+            tooltip.addImageWithText(opad);
+        } else {
+            tooltip.addPara(desc, opad, Misc.getHighlightColor(), "25%");
+        }
+    }
+
+    protected void addOmegaCoreDescription(TooltipMakerAPI tooltip, AICoreDescriptionMode mode) {
+        float opad = 10f;
+        String pre = mode == AICoreDescriptionMode.MANAGE_CORE_DIALOG_LIST ? "Omega-level AI core. "
+                : "Omega-level AI core currently assigned. ";
+        String desc = pre + "Reduces upkeep cost by %s. Population growth scales with colony size at double the rate. "
+                + "Produces crew and marines.";
+        if (mode == AICoreDescriptionMode.INDUSTRY_TOOLTIP || mode == AICoreDescriptionMode.MANAGE_CORE_TOOLTIP) {
+            CommoditySpecAPI spec = Global.getSettings().getCommoditySpec(OMEGA_CORE);
+            TooltipMakerAPI text = tooltip.beginImageWithText(spec.getIconName(), 48);
+            text.addPara(desc, 0f, Misc.getHighlightColor(), "50%");
+            tooltip.addImageWithText(opad);
+        } else {
+            tooltip.addPara(desc, opad, Misc.getHighlightColor(), "50%");
+        }
+    }
 
     // --- Industry lifecycle ---
 
@@ -102,8 +180,8 @@ public abstract class BaseCloning extends BaseIndustry implements MarketImmigrat
         if (Commodities.BETA_CORE.equals(coreId)
                 || Commodities.ALPHA_CORE.equals(coreId)
                 || OMEGA_CORE.equals(coreId)) {
-            supply(Commodities.CREW, CREW_PRODUCTION);
-            supply(Commodities.MARINES, MARINES_PRODUCTION);
+            supply(Commodities.CREW, computeCrewProduction());
+            supply(Commodities.MARINES, computeMarinesProduction());
         }
 
         market.addImmigrationModifier(this);
@@ -141,8 +219,14 @@ public abstract class BaseCloning extends BaseIndustry implements MarketImmigrat
                 Misc.getBasePlayerColor(), Misc.getDarkPlayerColor(),
                 Alignment.MID, opad);
 
-        tooltip.addPara(String.format("Population growth: +%d points (scales with colony size)", weight),
-                Misc.getPositiveHighlightColor(), opad);
+        if (hasScaling()) {
+            tooltip.addPara(String.format("Population growth: +%d points (scales with colony size)", weight),
+                    Misc.getPositiveHighlightColor(), opad);
+        } else {
+            tooltip.addPara(String.format("Population growth: +%d points", weight),
+                    Misc.getPositiveHighlightColor(), opad);
+        }
+
         tooltip.addPara("Stability: -" + size + " (scales with colony size)",
                 Misc.getNegativeHighlightColor(), pad);
 
@@ -150,7 +234,7 @@ public abstract class BaseCloning extends BaseIndustry implements MarketImmigrat
                 || Commodities.ALPHA_CORE.equals(coreId)
                 || OMEGA_CORE.equals(coreId)) {
             tooltip.addPara(
-                    String.format("Produces: %d crew, %d marines (AI core)", CREW_PRODUCTION, MARINES_PRODUCTION),
+                    String.format("Produces: %d crew, %d marines", computeCrewProduction(), computeMarinesProduction()),
                     Misc.getPositiveHighlightColor(), pad);
         }
     }
