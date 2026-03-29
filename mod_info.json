@@ -2,7 +2,7 @@
   "id": "oddisz_cloning",
   "name": "Cloning",
   "author": "Oddisz",
-  "version": "0.1.1",
+  "version": "0.2.1",
   "description": "Adds the cloning industry, which massively increases population growth on a planet. Due to lacking research about post-collapse biotechnology, clones are less healthy and more prone to acts of violence. As a result, Cloning gives an increasing big stability penalty.",
   "gameVersion": "0.98a-RC8",
   "jars": ["jars/cloning.jar"],
@@ -14,6 +14,10 @@
     {
       "id": "lunalib",
       "name": "LunaLib"
+    },
+    {
+      "id": "lw_lazylib",
+      "name": "LazyLib"
     }
   ]
 }

@@ -1,6 +1,7 @@
 package oddisz.industries;
 
 import com.fs.starfarer.api.Global;
+import com.fs.starfarer.api.campaign.SpecialItemData;
 import com.fs.starfarer.api.campaign.econ.CommoditySpecAPI;
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
 import com.fs.starfarer.api.campaign.econ.MarketImmigrationModifier;
@@ -17,6 +18,13 @@ public abstract class BaseCloning extends BaseIndustry implements MarketImmigrat
 
     private static final String MOD_ID = "oddisz_cloning";
     private static final String OMEGA_CORE = "omega_core";
+    private static final String IMPROVE_MOD_ID = "cloning_stability_improve";
+    private static final int IMPROVE_STABILITY_BONUS = 2;
+
+    private static final String BIOFACTORY_EMBRYO = "biofactory_embryo";
+    private static final String PRISTINE_NANOFORGE = "pristine_nanoforge";
+    private static final double BIOFACTORY_GROWTH_MULT = 1.25;
+    private static final double NANOFORGE_SCALING_BONUS = 0.10;
 
     private static final double DEFAULT_SCALING_FACTOR = 0.15;
     private static final double DEFAULT_GLOBAL_MULT = 1.0;
@@ -28,6 +36,21 @@ public abstract class BaseCloning extends BaseIndustry implements MarketImmigrat
     private boolean hasScaling() {
         String coreId = getAICoreId();
         return Commodities.ALPHA_CORE.equals(coreId) || OMEGA_CORE.equals(coreId);
+    }
+
+    private boolean hasBiofactoryEmbryo() {
+        SpecialItemData item = getSpecialItem();
+        return item != null && BIOFACTORY_EMBRYO.equals(item.getId());
+    }
+
+    private boolean hasPristineNanoforge() {
+        SpecialItemData item = getSpecialItem();
+        return item != null && PRISTINE_NANOFORGE.equals(item.getId());
+    }
+
+    @Override
+    public boolean wantsToUseSpecialItem(SpecialItemData data) {
+        return BIOFACTORY_EMBRYO.equals(data.getId()) || PRISTINE_NANOFORGE.equals(data.getId());
     }
 
     private int computeCrewProduction() {
@@ -48,13 +71,18 @@ public abstract class BaseCloning extends BaseIndustry implements MarketImmigrat
         int base = getIntSetting(getBaseGrowthFieldId(), getDefaultBaseGrowth());
         double globalMult = getDoubleSetting("globalMult", DEFAULT_GLOBAL_MULT);
 
-        if (hasScaling()) {
-            double scaling = getDoubleSetting("scalingFactor", DEFAULT_SCALING_FACTOR);
+        double result;
+        if (hasScaling() || hasPristineNanoforge()) {
+            double scaling = hasScaling() ? getDoubleSetting("scalingFactor", DEFAULT_SCALING_FACTOR) : 0.0;
             if (OMEGA_CORE.equals(getAICoreId())) scaling *= 2.0;
+            if (hasPristineNanoforge()) scaling += NANOFORGE_SCALING_BONUS;
             double sizeComponent = size * Math.log10(Math.max(size, 1));
-            return (int) Math.round(base * (1.0 + sizeComponent * scaling) * globalMult);
+            result = base * (1.0 + sizeComponent * scaling) * globalMult;
+        } else {
+            result = base * globalMult;
         }
-        return (int) Math.round(base * globalMult);
+        if (hasBiofactoryEmbryo()) result *= BIOFACTORY_GROWTH_MULT;
+        return (int) Math.round(result);
     }
 
     private static int getIntSetting(String fieldId, int defaultValue) {
@@ -172,6 +200,35 @@ public abstract class BaseCloning extends BaseIndustry implements MarketImmigrat
         }
     }
 
+    // --- Story point improvement ---
+
+    @Override
+    public boolean canImprove() {
+        return true;
+    }
+
+    @Override
+    protected void applyImproveModifiers() {
+        if (isImproved()) {
+            market.getStability().modifyFlat(IMPROVE_MOD_ID, IMPROVE_STABILITY_BONUS,
+                    getIndustryName() + " (improved)");
+        } else {
+            market.getStability().unmodifyFlat(IMPROVE_MOD_ID);
+        }
+    }
+
+    @Override
+    public void addImproveDesc(TooltipMakerAPI info, ImprovementDescriptionMode mode) {
+        float opad = 10f;
+        if (mode == ImprovementDescriptionMode.INDUSTRY_TOOLTIP) {
+            info.addPara("Stability penalty reduced by %s.", 0f, Misc.getHighlightColor(), "" + IMPROVE_STABILITY_BONUS);
+        } else {
+            info.addPara("Reduces the stability penalty from cloning by %s.", 0f, Misc.getHighlightColor(), "" + IMPROVE_STABILITY_BONUS);
+        }
+        info.addSpacer(opad);
+        super.addImproveDesc(info, mode);
+    }
+
     // --- Industry lifecycle ---
 
     @Override
@@ -196,6 +253,7 @@ public abstract class BaseCloning extends BaseIndustry implements MarketImmigrat
     public void unapply() {
         market.removeImmigrationModifier(this);
         market.getStability().unmodify(getModId());
+        market.getStability().unmodifyFlat(IMPROVE_MOD_ID);
         super.unapply();
     }
 
@@ -223,16 +281,27 @@ public abstract class BaseCloning extends BaseIndustry implements MarketImmigrat
                 Misc.getBasePlayerColor(), Misc.getDarkPlayerColor(),
                 Alignment.MID, opad);
 
-        if (hasScaling()) {
+        if (hasScaling() || hasPristineNanoforge()) {
             tooltip.addPara(String.format("Population growth: +%d points (scales with colony size)", weight),
                     Misc.getPositiveHighlightColor(), opad);
         } else {
             tooltip.addPara(String.format("Population growth: +%d points", weight),
                     Misc.getPositiveHighlightColor(), opad);
         }
+        if (hasBiofactoryEmbryo()) {
+            tooltip.addPara("Biofactory Embryo: base growth +25%", Misc.getPositiveHighlightColor(), pad);
+        }
+        if (hasPristineNanoforge()) {
+            tooltip.addPara(String.format("Pristine Nanoforge: scaling factor +%.2f", NANOFORGE_SCALING_BONUS),
+                    Misc.getPositiveHighlightColor(), pad);
+        }
 
         tooltip.addPara("Stability: -" + size + " (scales with colony size)",
                 Misc.getNegativeHighlightColor(), pad);
+        if (isImproved()) {
+            tooltip.addPara("Stability improvement: +" + IMPROVE_STABILITY_BONUS,
+                    Misc.getPositiveHighlightColor(), pad);
+        }
 
         if (Commodities.BETA_CORE.equals(coreId)
                 || Commodities.ALPHA_CORE.equals(coreId)

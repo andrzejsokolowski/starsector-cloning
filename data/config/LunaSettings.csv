@@ -4,3 +4,4 @@ oddisz_cloning,baseGrowthTier2,Base Growth (Cloning),Int,125,0,10000,Base popula
 oddisz_cloning,baseGrowthTier3,Base Growth (Megafactory),Int,250,0,10000,Base population growth points added by the Cloning Megafactory per tick.,Cloning
 oddisz_cloning,scalingFactor,Scaling Factor,Double,0.15,0.0,2.0,Controls how much colony size amplifies growth. Higher values make large colonies grow much faster.,Cloning
 oddisz_cloning,globalMult,Global Multiplier,Double,1.0,0.0,10.0,Global multiplier applied to all cloning industry growth.,Cloning
+oddisz_cloning,resetToDefault,Reset to Default,Boolean,false,,,Resets all settings above to their default values when toggled on.,Cloning

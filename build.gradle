@@ -10,6 +10,7 @@ sourceSets.main.java.srcDirs = ['src']
 dependencies {
     compileOnly fileTree(dir: "${starsectorPath}/starsector-core", include: '*.jar')
     compileOnly fileTree(dir: "${starsectorPath}/mods/LunaLib-2.0.5/jars", include: '*.jar')
+    compileOnly fileTree(dir: "${starsectorPath}/mods/LazyLib-3.0.0/jars", include: '*.jar')
 }
 
 
