@@ -69,8 +69,6 @@
 | RES-01 | Phase 2 | Pending |
 | RES-02 | Phase 2 | Pending |
 | RES-03 | Phase 2 | Pending |
-| LUNA-01 | Phase 2 | Pending |
-| LUNA-02 | Phase 2 | Pending |
 | GROW-01 | Phase 3 | Pending |
 | GROW-02 | Phase 3 | Pending |
 | GROW-03 | Phase 3 | Pending |
@@ -81,6 +79,8 @@
 | BOOST-05 | Phase 3 | Pending |
 | BOOST-06 | Phase 3 | Pending |
 | DOWN-01 | Phase 3 | Pending |
+| LUNA-01 | Phase 4 | Pending |
+| LUNA-02 | Phase 4 | Pending |
 
 **Coverage:**
 - v1 requirements: 19 total
@@ -89,4 +89,4 @@
 
 ---
 *Requirements defined: 2026-03-29*
-*Last updated: 2026-03-29 after initial definition*
+*Last updated: 2026-03-29 — traceability updated after roadmap creation (LUNA-01/02 moved to Phase 4)*
