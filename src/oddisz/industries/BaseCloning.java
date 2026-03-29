@@ -12,7 +12,7 @@ import lunalib.lunaSettings.LunaSettings;
 
 public abstract class BaseCloning extends BaseIndustry implements MarketImmigrationModifier {
 
-    private static final String MOD_ID = "oddisz_cloning";
+    private static final String MOD_ID = "cloning";
 
     private static final double DEFAULT_SCALING_FACTOR = 0.15;
     private static final double DEFAULT_GLOBAL_MULT = 1.0;

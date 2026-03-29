@@ -19,6 +19,6 @@ public class Cloning extends BaseCloning {
 
     @Override
     public boolean isAvailableToBuild() {
-        return false;
+        return true;
     }
 }

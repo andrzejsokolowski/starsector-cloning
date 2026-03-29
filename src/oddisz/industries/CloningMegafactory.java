@@ -19,6 +19,6 @@ public class CloningMegafactory extends BaseCloning {
 
     @Override
     public boolean isAvailableToBuild() {
-        return false;
+        return true;
     }
 }
