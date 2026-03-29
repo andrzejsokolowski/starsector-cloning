@@ -13,7 +13,7 @@ import lunalib.lunaSettings.LunaSettings;
 
 public abstract class BaseCloning extends BaseIndustry implements MarketImmigrationModifier {
 
-    private static final String MOD_ID = "cloning";
+    private static final String MOD_ID = "oddisz_cloning";
 
     // Astral Ascension commodity ID — safe to reference even if mod is absent;
     // getAICoreId() will simply never return this value in that case.
