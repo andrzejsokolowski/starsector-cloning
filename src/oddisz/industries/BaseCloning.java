@@ -98,8 +98,12 @@ public abstract class BaseCloning extends BaseIndustry implements MarketImmigrat
     public void addAICoreSection(TooltipMakerAPI tooltip, String coreId, AICoreDescriptionMode mode) {
         if (OMEGA_CORE.equals(coreId)) {
             addOmegaCoreDescription(tooltip, mode);
-        } else {
-            super.addAICoreSection(tooltip, mode == null ? AICoreDescriptionMode.INDUSTRY_TOOLTIP : mode);
+        } else if (Commodities.ALPHA_CORE.equals(coreId)) {
+            addAlphaCoreDescription(tooltip, mode);
+        } else if (Commodities.BETA_CORE.equals(coreId)) {
+            addBetaCoreDescription(tooltip, mode);
+        } else if (Commodities.GAMMA_CORE.equals(coreId)) {
+            addGammaCoreDescription(tooltip, mode);
         }
     }
 
