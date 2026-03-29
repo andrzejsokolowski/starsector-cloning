@@ -1,0 +1,77 @@
+[center][size=28pt][url=https://github.com/andrzejsokolowski/starsector-cloning/releases/latest/download/cloning.zip][b]Cloning[/b][/url][/size]
+[url=https://github.com/andrzejsokolowski/starsector-cloning/releases/latest/download/cloning.zip][img]https://img.shields.io/github/downloads/andrzejsokolowski/starsector-cloning/total?style=for-the-badge&label=download[/img][/url]  [url=https://github.com/andrzejsokolowski/starsector-cloning][img]https://img.shields.io/github/v/release/andrzejsokolowski/starsector-cloning?display_name=tag&sort=semver&style=for-the-badge&label=source[/img][/url]
+[/center]
+
+[center][b]
+Ever installed Astral Ascension but found you would need to wait years for a size 9 colony in the first place?
+Ever wanted to see those cool multipliers from having a [i]Fractal Ecumenopolis[/i] — whatever that is, because you've never seen it without using console commands?
+Ever installed Vulpoids and saw your celebrities produce 0.6% growth on a size 8?
+
+Well, look no more.
+
+Adds a three-tier cloning industry that massively boosts population growth — at a cost to stability.
+
+[color=red]Requires [url=https://fractalsoftworks.com/forum/index.php?topic=21022.0][u]LunaLib[/u][/url].[/color]
+[/b][/center]
+
+[center]
+[table]
+[tr]
+[td][hr][center][size=12pt][b]Industry Chain[/b][/size][/center][hr]
+[list]
+[li]Adds a new industry available from the start, occupying an industry slot.[/li]
+[li]Three upgrade tiers, each producing more population growth than the last:
+[list]
+[li][b]Clone Vat Experiments[/b] — entry-level, produces some population growth.[/li]
+[li][b]Cloning Industry[/b] — upgrade, produces more population growth.[/li]
+[li][b]Cloning Megafactory[/b] — top tier, produces a large amount of population growth.[/li]
+[/list][/li]
+[li]Growth scales with colony size when an Alpha or Omega core is installed.[/li]
+[li]All tiers apply a stability penalty that scales with colony size — there are consequences for cutting corners on biology.[/li]
+[/list]
+
+[hr][center][size=12pt][b]AI Core Effects[/b][/size][/center][hr]
+[list]
+[li][b]Gamma core[/b] — reduces upkeep. Cloning is expensive; every bit helps.[/li]
+[li][b]Beta core[/b] — reduces upkeep and produces crew and marines alongside population growth.[/li]
+[li][b]Alpha core[/b] — reduces upkeep, produces crew and marines, and growth now scales with colony size.[/li]
+[li][b]Omega core[/b] [i](Astral Ascension)[/i] — all Alpha benefits, plus doubled colony size scaling. Expect extremely large numbers. Go wild.[/li]
+[/list]
+
+[hr][center][size=12pt][b]Configuration[/b][/size][/center][hr]
+[list]
+[li]Uses [url=https://fractalsoftworks.com/forum/index.php?topic=21022.0]LunaLib[/url] for in-game settings.[/li]
+[li]Configurable values: base growth per tier, colony size scaling factor, and a global multiplier.[/li]
+[li]Players without LunaLib will use the built-in defaults.[/li]
+[/list]
+[/td][/tr][/table][/center]
+
+[spoiler=FAQ]
+[b]Is this mod overpowered?[/b]
+Definitely yes, until I manage to balance it somehow. And I mean [i]really[/i] overpowered — hitting over a thousand growth points on a size 7 colony is entirely possible right now.
+
+[b]What is planned?[/b]
+[list]
+[li]Colony item integration.[/li]
+[li]Bigger penalties to match the big bonuses.[/li]
+[li]A way to acquire the Cloning blueprint from a difficult fight — maybe a Dorito.[/li]
+[li]Integration with AOTD (VOK)'s research system, involving the player in unlocking stat boosts while fighting for databanks.[/li]
+[/list]
+
+[b]Compatibility?[/b]
+[list]
+[li]Should be compatible with everything. Tested with the Build Menu Overhaul from AOTD.[/li]
+[li]Tested on a 250-mod modpack with no crashes.[/li]
+[/list]
+[/spoiler]
+
+[spoiler=Version log]
+[b]0.1.0[/b]
+[list]
+[li]Initial release.[/li]
+[li]Three-tier cloning industry chain: Clone Vat Experiments → Cloning Industry → Cloning Megafactory.[/li]
+[li]Custom AI core effects for Gamma, Beta, Alpha, and Omega (Astral Ascension) cores.[/li]
+[li]Population growth formula configurable via LunaLib settings.[/li]
+[li]Stability penalty scaling with colony size.[/li]
+[/list]
+[/spoiler]
