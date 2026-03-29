@@ -1,6 +1,5 @@
 package oddisz.industries;
 
-import com.fs.starfarer.api.campaign.econ.Industry.IndustryTooltipMode;
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
 import com.fs.starfarer.api.campaign.econ.MarketImmigrationModifier;
 import com.fs.starfarer.api.impl.campaign.econ.impl.BaseIndustry;
