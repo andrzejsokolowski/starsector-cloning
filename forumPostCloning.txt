@@ -24,9 +24,9 @@ Adds a three-tier cloning industry that massively boosts population growth — a
 [list]
 [li][b]Clone Vat Experiments[/b] — entry-level, produces some population growth.[/li]
 [li][b]Cloning Industry[/b] — upgrade, produces more population growth.[/li]
-[li][b]Cloning Megafactory[/b] — top tier, produces a large amount of population growth.[/li]
+[li][b]Cloning Megafactory[/b] — top tier, produces a large amount of population growth. Tons of upkeep, credits and stability. Be prepared.[/li]
 [/list][/li]
-[li]Growth scales with colony size when an Alpha or Omega core is installed.[/li]
+[li]Growth scales with colony size when an Alpha or Omega core is installed, or when a pristine nanoforge is installed.[/li]
 [li]All tiers apply a stability penalty that scales with colony size — there are consequences for cutting corners on biology.[/li]
 [/list]
 
@@ -52,10 +52,10 @@ Definitely yes, until I manage to balance it somehow. And I mean [i]really[/i] o
 
 [b]What is planned?[/b]
 [list]
-[li]Colony item integration.[/li]
-[li]Bigger penalties to match the big bonuses.[/li]
-[li]A way to acquire the Cloning blueprint from a difficult fight — maybe a Dorito.[/li]
-[li]Integration with AOTD (VOK)'s research system, involving the player in unlocking stat boosts while fighting for databanks.[/li]
+[li]DONE - Colony item integration.[/li]
+[li]TBA - Bigger penalties to match the big bonuses.[/li]
+[li]TBA - A way to acquire the Cloning blueprint from a difficult fight — maybe a Dorito.[/li]
+[li]TBA - Integration with AOTD (VOK)'s research system, involving the player in unlocking stat boosts while fighting for databanks.[/li]
 [/list]
 
 [b]Compatibility?[/b]
@@ -66,12 +66,11 @@ Definitely yes, until I manage to balance it somehow. And I mean [i]really[/i] o
 [/spoiler]
 
 [spoiler=Version log]
-[b]0.1.0[/b]
-[list]
-[li]Initial release.[/li]
-[li]Three-tier cloning industry chain: Clone Vat Experiments → Cloning Industry → Cloning Megafactory.[/li]
-[li]Custom AI core effects for Gamma, Beta, Alpha, and Omega (Astral Ascension) cores.[/li]
-[li]Population growth formula configurable via LunaLib settings.[/li]
-[li]Stability penalty scaling with colony size.[/li]
-[/list]
+0.1.0
+Initial Release
+0.1.1
+Fixed infinite recursion bug. Now playable.
+0.2.1
+Added support for story point improvement as well as two colony items:
+Biofactory embryos and pristine nanoforge.
 [/spoiler]
