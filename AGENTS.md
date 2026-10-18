@@ -15,6 +15,14 @@ task a ticket (ticket ids start with CLN) and keep it current. Cloning is also b
 Coalesced Little Mods (its settings renamed there with a `cloning_` prefix): bring every change
 over there too. The Notion tools are deferred: load them with ToolSearch first.
 
+Update the board during the work, not only at release time. Before changing files, put the
+message on its ticket: a new request gets a new ticket (In progress), and a problem Andrzej
+reports on Needs Human Test work moves that ticket to Changes Requested with the notes quoted.
+Before ending the turn, update the ticket's body (What was done, How, Commits, Test list) and
+its Status, Version and End date. Read the board with `notion-query-data-sources` mode `view`
+on `view://3fd20ca7-5d20-81f3-946c-000cd35ab55e` or `notion-fetch` a ticket. SQL and rows mode share a small
+quota that runs out. The workspace `AGENTS.md` has the full routine.
+
 ## Essentials
 
 - id `oddisz_cloning`, package `cloning`, jar `jars/cloning.jar`, Java 17, Gradle wrapper.
