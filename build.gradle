@@ -18,3 +18,23 @@ jar {
     destinationDirectory = file('jars')
     archiveFileName = 'cloning.jar'
 }
+
+// Release packaging: stage the runtime files in Cloning/ and zip that folder as cloning.zip
+// (the asset name directDownloadURL expects). Both outputs are gitignored.
+def stagingName = 'Cloning'
+
+tasks.register('stageRelease', Sync) {
+    dependsOn tasks.named('jar')
+    into file(stagingName)
+    from('.') { include 'mod_info.json', 'cloning.version', 'icon.png' }
+    from('data') { into 'data' }
+    from('graphics') { into 'graphics' }
+    from('jars') { into 'jars'; include 'cloning.jar' }
+}
+
+tasks.register('releaseZip', Zip) {
+    dependsOn tasks.named('stageRelease')
+    from(file(stagingName)) { into stagingName }
+    destinationDirectory = layout.projectDirectory
+    archiveFileName = 'cloning.zip'
+}

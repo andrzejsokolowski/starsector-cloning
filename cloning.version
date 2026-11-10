@@ -8,7 +8,7 @@
     {
         "major":0,
         "minor":2,
-        "patch":"0"
+        "patch":"2"
     },
 	"starsectorVersion":"0.98a-RC8",
 	"directDownloadURL":"https://github.com/andrzejsokolowski/starsector-cloning/releases/latest/download/cloning.zip"

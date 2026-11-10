@@ -1,3 +1,6 @@
+Version 0.2.2 (2026-11-10)
+- New gold icon in mod managers (TriOS) and in LunaLib's settings.
+
 Version 0.2.1 (2026-03-29)
 - Support for all vanilla-like colony actions, each with its own effect: story point improvement, colony items (Biofactory Embryo and Pristine Nanoforge) and AI cores.
 

@@ -25,8 +25,9 @@ quota that runs out. The workspace `AGENTS.md` has the full routine.
 
 - id `oddisz_cloning`, package `cloning`, jar `jars/cloning.jar`, Java 17, Gradle wrapper.
   Depends on LunaLib and LazyLib.
-- Build: `./gradlew jar`. There is no packaging script yet (see the "Tidy the Cloning repo"
-  ticket). The Git remote is named `starsector-cloning`, not `origin`.
+- Build: `./gradlew jar`. Package: `./gradlew releaseZip` stages `Cloning/` and writes
+  `cloning.zip` in the repo root (both gitignored). The Git remote is named `starsector-cloning`,
+  not `origin`.
 - Development logs in `DEVLOGS/`, release history in `changelog.md`.
 
 ## Update metadata

@@ -14,3 +14,7 @@ build/
 
 # Local build config (each dev sets their own path)
 gradle.properties
+
+# Release staging folder and archive (rebuilt by ./gradlew releaseZip)
+/Cloning/
+/cloning.zip
