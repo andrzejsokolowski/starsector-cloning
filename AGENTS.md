@@ -11,9 +11,7 @@ Tasks and history: the **Cloning board** in Andrzej's Notion, under **Starsector
 (`collection://28241466-1489-43c0-a24c-8d4eb2fd1574`). Working rules and game API notes:
 **Claude Information** (`collection://7bf9b1d6-b9e5-4b62-87f1-757bbaa51919`), starting with
 "Start here: working on Starsector mods through Notion". Read the board before working, give every
-task a ticket (ticket ids start with CLN) and keep it current. Cloning is also bundled in
-Coalesced Little Mods (its settings renamed there with a `cloning_` prefix): bring every change
-over there too. The Notion tools are deferred: load them with ToolSearch first.
+task a ticket (ticket ids start with CLN) and keep it current. The Notion tools are deferred: load them with ToolSearch first.
 
 Update the board during the work, not only at release time. Before changing files, put the
 message on its ticket: a new request gets a new ticket (In progress), and a problem Andrzej
