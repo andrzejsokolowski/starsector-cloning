@@ -1,0 +1,10 @@
+id,trigger,conditions,script,text,options,notes
+clnIEBlurbBar,clnie_blurbBar,,,A $clnie_manOrWoman in a lab coat sits alone with a data pad full of medical scans.,,
+clnIEOptionBar,clnie_optionBar,,,,clnie_startBar:Ask the $clnie_manOrWoman in the lab coat about the scans,
+clnIEStartBar,DialogOptionSelected,$option == clnie_startBar,"$missionId = clnie
+Call $clnie_ref showMap ""Target: $clnie_systemName""","""These came out of the $clnie_systemName,"" $heOrShe says. ""Grown bodies, identical ones. Rumors say someone out there is cloning people.""
+
+""I want to know who. Whatever you find there is yours.""","contact_acceptBar:Accept
+contact_declineBarNoContinue:Decline",
+clnIEOrdoDefeated,ClnIEOrdoDefeated,,"$global.clnie_won = true
+Call $global.clnie_ref updateStage",,,

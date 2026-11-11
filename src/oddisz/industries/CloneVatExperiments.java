@@ -19,6 +19,6 @@ public class CloneVatExperiments extends BaseCloning {
 
     @Override
     public boolean isAvailableToBuild() {
-        return true;
+        return oddisz.cloning.CloningUnlock.isUnlocked();
     }
 }

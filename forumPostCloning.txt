@@ -20,7 +20,7 @@ Adds a three-tier cloning industry that massively boosts population growth - at 
 [tr]
 [td][hr][center][size=12pt][b]Industry Chain[/b][/size][/center][hr]
 [list]
-[li]Adds a new industry available from the start, occupying an industry slot.[/li]
+[li]Adds a new industry, occupying an industry slot. Unlocked by finishing the bar mission [b]Inhuman Experiments[/b].[/li]
 [li]Three upgrade tiers, each producing more population growth than the last:
 [list]
 [li][b]Clone Vat Experiments[/b] - entry-level, produces some population growth.[/li]
@@ -29,6 +29,13 @@ Adds a three-tier cloning industry that massively boosts population growth - at 
 [/list][/li]
 [li]Growth scales with colony size when an Alpha or Omega core is installed, or when a pristine nanoforge is installed.[/li]
 [li]All tiers apply a stability penalty that scales with colony size - there are consequences for cutting corners on biology.[/li]
+[/list]
+
+[hr][center][size=12pt][b]Clone Vat hull mod[/b][/size][/center][hr]
+[list]
+[li]Logistics hull mod, 4/10/25/40 OP, learned from the same mission.[/li]
+[li]Restores 10/25/50/100% of the crew lost in a battle, depending on hull size. The vats of every ship in the fleet add up, to at most 100%.[/li]
+[li]Built in (S-mod): every day turns 2/4/8/16 food into 1/2/4/8 crew while the fleet has food and room for crew.[/li]
 [/list]
 
 [hr][center][size=12pt][b]AI Core Effects[/b][/size][/center][hr]
@@ -55,7 +62,7 @@ Definitely yes, until I manage to balance it somehow. And I mean [i]really[/i] o
 [list]
 [li]DONE - Colony item integration.[/li]
 [li]TBA - Bigger penalties to match the big bonuses.[/li]
-[li]TBA - A way to acquire the Cloning blueprint from a difficult fight - maybe a Dorito.[/li]
+[li]DONE - A way to acquire the Cloning blueprint from a difficult fight - maybe a Dorito.[/li]
 [li]TBA - Integration with AOTD (VOK)'s research system, involving the player in unlocking stat boosts while fighting for databanks.[/li]
 [/list]
 
@@ -76,4 +83,9 @@ Added support for story point improvement as well as two colony items:
 Biofactory embryos and pristine nanoforge.
 0.2.2
 New gold icon in mod managers (TriOS) and in LunaLib's settings.
+0.3.0
+New hull mod Clone Vat (logistics, 4/10/25/40 OP): restores 10/25/50/100 % of the crew lost in a battle, depending on hull size. The vats of every ship in the fleet add up, to at most 100 %.
+Clone Vat built in (S-mod): every day turns 2/4/8/16 food into 1/2/4/8 crew while the fleet has food and room for crew.
+New bar mission Inhuman Experiments. Beating the fleet at the end unlocks the cloning colony buildings and teaches Clone Vat.
+The cloning colony buildings now need that unlock. Saves that already have a cloning building get it automatically.
 [/spoiler]

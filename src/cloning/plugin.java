@@ -50,6 +50,12 @@ public class plugin extends BaseModPlugin {
         }
     }
 
+    @Override
+    public void onGameLoad(boolean newGame) {
+        oddisz.cloning.CloneVatTracker.register();
+        oddisz.cloning.CloningUnlock.unlockIfAlreadyBuilt();
+    }
+
     private static class ResetListener implements LunaSettingsListener {
         @Override
         public void settingsChanged(String modId) {

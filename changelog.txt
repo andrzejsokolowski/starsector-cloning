@@ -1,3 +1,9 @@
+Version 0.3.0 (2026-11-11)
+- New hull mod Clone Vat (logistics, 4/10/25/40 OP): restores 10/25/50/100 percent of the crew lost in a battle, depending on hull size. The vats of every ship in the fleet add up, to at most 100 percent.
+- Clone Vat built in (S-mod): every day turns 2/4/8/16 food into 1/2/4/8 crew while the fleet has food and room for crew.
+- New bar mission Inhuman Experiments. Beating the fleet at the end unlocks the cloning colony buildings and teaches Clone Vat.
+- The cloning colony buildings now need that unlock. Saves that already have a cloning building get it automatically.
+
 Version 0.2.2 (2026-11-10)
 - New gold icon in mod managers (TriOS) and in LunaLib's settings.
 

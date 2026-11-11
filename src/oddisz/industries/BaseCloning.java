@@ -270,6 +270,14 @@ public abstract class BaseCloning extends BaseIndustry implements MarketImmigrat
     }
 
     @Override
+    public String getUnavailableReason() {
+        if (!oddisz.cloning.CloningUnlock.isUnlocked()) {
+            return "Requires cloning research";
+        }
+        return super.getUnavailableReason();
+    }
+
+    @Override
     protected void addRightAfterDescriptionSection(TooltipMakerAPI tooltip, IndustryTooltipMode mode) {
         float opad = 10f;
         float pad = 3f;
