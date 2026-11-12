@@ -1,9 +1,13 @@
 package oddisz.industries;
 
-import com.fs.starfarer.api.ui.TooltipMakerAPI;
-import com.fs.starfarer.api.util.Misc;
-import oddisz.cloning.CloningPaths;
+import com.fs.starfarer.api.Global;
+import com.fs.starfarer.api.loading.IndustrySpecAPI;
 
+/**
+ * Tier 1 of cloning. It has no fixed upgrade in industries.csv (like VoK's Light Industry):
+ * the three buildings whose downgrade is this one are its upgrades. Building Menu Overhaul
+ * shows them under "Choose Upgrade"; without it, CloningUpgradeOptions adds the menu entries.
+ */
 public class CloneVatExperiments extends BaseCloning {
 
     @Override
@@ -26,31 +30,18 @@ public class CloneVatExperiments extends BaseCloning {
         return oddisz.cloning.CloningUnlock.isUnlocked();
     }
 
-    // --- Branching upgrade: the colony's chosen path (Cloning, Organ Flashcloning, Marine Sim-Cloning) ---
-
-    @Override
-    public boolean canUpgrade() {
-        CloningPaths.syncUpgrade(market);
-        return super.canUpgrade();
+    /** Starts upgrading into the given building, the same way vanilla's startUpgrading does. */
+    public void startUpgradingTo(String industryId) {
+        IndustrySpecAPI target = Global.getSettings().getIndustrySpec(industryId);
+        if (target == null) return;
+        building = true;
+        buildProgress = 0;
+        upgradeId = industryId;
+        buildTime = target.getBuildTime();
     }
 
-    @Override
-    public void startUpgrading() {
-        CloningPaths.syncUpgrade(market);
-        super.startUpgrading();
-    }
-
-    @Override
-    public void createTooltip(IndustryTooltipMode mode, TooltipMakerAPI tooltip, boolean expanded) {
-        CloningPaths.syncUpgrade(market);
-        super.createTooltip(mode, tooltip, expanded);
-    }
-
-    @Override
-    protected void addRightAfterDescriptionSection(TooltipMakerAPI tooltip, IndustryTooltipMode mode) {
-        super.addRightAfterDescriptionSection(tooltip, mode);
-        if (market == null || mode == IndustryTooltipMode.ADD_INDUSTRY) return;
-        tooltip.addPara("Upgrade path: %s (set at the colony's Cloning facilities)", 3f,
-                Misc.getHighlightColor(), CloningPaths.name(CloningPaths.get(market)));
+    /** The building this one is turning into, or null. */
+    public String getUpgradeTargetId() {
+        return isUpgrading() ? upgradeId : null;
     }
 }

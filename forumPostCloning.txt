@@ -21,11 +21,11 @@ Adds a three-tier cloning industry that massively boosts population growth - at 
 [td][hr][center][size=12pt][b]Industry Chain[/b][/size][/center][hr]
 [list]
 [li]Adds a new industry, occupying an industry slot. Unlocked by finishing the bar mission [b]Inhuman Experiments[/b], or known from the start if you turn the mission off in LunaLib.[/li]
-[li][b]Clone Vat Experiments[/b] - entry-level, produces some population growth. Upgrades into one of three paths, picked at the colony's [b]Cloning facilities[/b] option:
+[li][b]Clone Vat Experiments[/b] - entry-level, produces some population growth. Upgrades into one of three paths (with Building Menu Overhaul, under Choose Upgrade):
 [list]
 [li][b]Cloning Industry[/b] - more population growth, then [b]Cloning Megafactory[/b] for a large amount. Tons of upkeep, credits and stability. Be prepared.[/li]
 [li][b]Organ Flashcloning[/b] - supplies harvested organs (colony size plus 1) and adds stability.[/li]
-[li][b]Marine Sim-Cloning[/b] - puts trained marines into the colony's storage every 30 days, and lets you clone officers.[/li]
+[li][b]Marine Sim-Cloning[/b] - puts trained marines into the colony's storage every 30 days, and lets you clone officers at the colony's [b]Cloning facilities[/b] option.[/li]
 [/list][/li]
 [li]Growth scales with colony size when an Alpha or Omega core is installed, or when a pristine nanoforge is installed.[/li]
 [li]All tiers apply a stability penalty that scales with colony size - there are consequences for cutting corners on biology.[/li]
@@ -117,4 +117,9 @@ New building Marine Sim-Cloning: puts 10 marines per colony size into the colony
 Officer cloning at colonies with Marine Sim-Cloning: pay credits and harvested organs for a copy of an officer with the same portrait, personality and skills, but no elite skills, plus the new Clone skill (less maneuverability, worse autofire aim).
 New LunaLib tabs: Organ Flashcloning, Marine Sim-Cloning, Officer Cloning and Clone Vat. Reset to Default now resets every setting.
 Rewrote the Clone Vat Experiments and Cloning Industry descriptions.
+0.6.1
+Fixed: picking Organ Flashcloning or Marine Sim-Cloning as the upgrade built Cloning Industry instead.
+Clone Vat Experiments no longer has a fixed upgrade. With Building Menu Overhaul, Choose Upgrade lists all three paths. Without it, the building's menu has an Upgrade entry for each path and a Cancel upgrade entry.
+The Cloning facilities option now only appears with Marine Sim-Cloning, for officer cloning.
+The clone of you now always captains the largest ship of the clone fleet.
 [/spoiler]

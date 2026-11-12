@@ -174,7 +174,7 @@ public class InhumanExperiments extends HubMissionWithBarEvent {
         return clone;
     }
 
-    /** Flagship gets the player's clone; the biggest other ships get the officers' clones. */
+    /** The largest ship gets the player's clone and becomes the flagship; the next biggest get the officers' clones. */
     public static void applyClones(CampaignFleetAPI fleet) {
         if (fleet == null || !fleet.isAlive()) return;
         CampaignFleetAPI player = Global.getSector().getPlayerFleet();
@@ -190,12 +190,14 @@ public class InhumanExperiments extends HubMissionWithBarEvent {
         if (ships.isEmpty()) return;
         Collections.sort(ships, new Comparator<FleetMemberAPI>() {
             public int compare(FleetMemberAPI a, FleetMemberAPI b) {
+                int size = b.getHullSpec().getHullSize().compareTo(a.getHullSpec().getHullSize());
+                if (size != 0) return size;
                 return Float.compare(b.getFleetPointCost(), a.getFleetPointCost());
             }
         });
 
-        FleetMemberAPI flagship = fleet.getFlagship();
-        if (flagship == null || flagship.isFighterWing()) flagship = ships.get(0);
+        // The player's clone always flies the largest ship, which becomes the flagship.
+        FleetMemberAPI flagship = ships.get(0);
         ships.remove(flagship);
 
         PersonAPI commander = makeClone(playerPerson, Personalities.AGGRESSIVE);

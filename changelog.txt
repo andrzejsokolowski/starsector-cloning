@@ -1,3 +1,9 @@
+Version 0.6.1 (2026-11-12)
+- Fixed: picking Organ Flashcloning or Marine Sim-Cloning as the upgrade built Cloning Industry instead.
+- Clone Vat Experiments no longer has a fixed upgrade. With Building Menu Overhaul, Choose Upgrade lists all three paths. Without it, the building's menu has an Upgrade entry for each path and a Cancel upgrade entry.
+- The Cloning facilities option now only appears with Marine Sim-Cloning, for officer cloning.
+- The clone of you now always captains the largest ship of the clone fleet.
+
 Version 0.6.0 (2026-11-12)
 - Clone Vat Experiments can now upgrade into one of three buildings, picked at the colony's new Cloning facilities option: Cloning Industry, Organ Flashcloning or Marine Sim-Cloning.
 - New building Organ Flashcloning: supplies harvested organs (colony size plus 1) and adds 1 stability. AI cores (Omega too), the story point improvement, a Biofactory Embryo or a Pristine Nanoforge add more of both.

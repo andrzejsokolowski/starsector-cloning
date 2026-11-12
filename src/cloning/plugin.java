@@ -57,6 +57,7 @@ public class plugin extends BaseModPlugin {
     @Override
     public void onGameLoad(boolean newGame) {
         oddisz.cloning.CloneVatTracker.register();
+        oddisz.cloning.CloningUpgradeOptions.register();
         oddisz.cloning.CloningUnlock.unlockIfAlreadyBuilt();
         oddisz.cloning.CloningUnlock.unlockIfMissionOff();
     }

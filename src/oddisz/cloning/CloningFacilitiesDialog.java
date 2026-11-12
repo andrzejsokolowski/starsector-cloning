@@ -9,7 +9,6 @@ import com.fs.starfarer.api.campaign.InteractionDialogAPI;
 import com.fs.starfarer.api.campaign.InteractionDialogPlugin;
 import com.fs.starfarer.api.campaign.OptionPanelAPI;
 import com.fs.starfarer.api.campaign.TextPanelAPI;
-import com.fs.starfarer.api.campaign.econ.Industry;
 import com.fs.starfarer.api.campaign.econ.MarketAPI;
 import com.fs.starfarer.api.campaign.rules.MemoryAPI;
 import com.fs.starfarer.api.characters.PersonAPI;
@@ -18,12 +17,10 @@ import com.fs.starfarer.api.impl.campaign.RuleBasedInteractionDialogPluginImpl;
 import com.fs.starfarer.api.util.Misc;
 
 /**
- * "Cloning facilities" at a player colony: pick the upgrade path of Clone Vat Experiments, and,
- * with Marine Sim-Cloning built, clone an officer. Opened from rules.csv by CLN_CloningFacilities.
+ * "Cloning facilities" at a player colony with Marine Sim-Cloning: clone an officer. Opened from rules.csv by CLN_CloningFacilities.
  */
 public class CloningFacilitiesDialog implements InteractionDialogPlugin {
 
-    private static final String OPT_PATH = "cln_path:";
     private static final String OPT_OFFICERS = "cln_officers";
     private static final String OPT_PICK = "cln_pick:";
     private static final String OPT_CONFIRM = "cln_confirm";
@@ -43,7 +40,7 @@ public class CloningFacilitiesDialog implements InteractionDialogPlugin {
 
     public static boolean isAvailable(MarketAPI market) {
         if (market == null || !market.isPlayerOwned()) return false;
-        return market.hasIndustry(CloningPaths.TIER1) || market.hasIndustry(CloningPaths.MARINES);
+        return market.hasIndustry(CloningPaths.MARINES);
     }
 
     public static void open(InteractionDialogAPI dialog, Map<String, MemoryAPI> memoryMap) {
@@ -70,22 +67,6 @@ public class CloningFacilitiesDialog implements InteractionDialogPlugin {
         if (market == null) {
             options.addOption("Leave", OPT_LEAVE);
             return;
-        }
-
-        Industry tier1 = market.getIndustry(CloningPaths.TIER1);
-        if (tier1 != null) {
-            String current = CloningPaths.get(market);
-            text.addPara("Clone Vat Experiments will upgrade into: %s.", Misc.getHighlightColor(),
-                    CloningPaths.name(current));
-            boolean upgrading = tier1.isUpgrading();
-            if (upgrading) {
-                text.addPara("An upgrade is already under way.", Misc.getGrayColor());
-            }
-            for (String id : CloningPaths.ALL) {
-                String opt = OPT_PATH + id;
-                options.addOption("Upgrade path: " + CloningPaths.name(id), opt);
-                if (upgrading || id.equals(current)) options.setEnabled(opt, false);
-            }
         }
 
         if (market.hasIndustry(CloningPaths.MARINES)) {
@@ -144,12 +125,7 @@ public class CloningFacilitiesDialog implements InteractionDialogPlugin {
         if (optionText != null) text.addParagraph(optionText, Global.getSettings().getColor("buttonText"));
         String opt = optionData instanceof String ? (String) optionData : "";
 
-        if (opt.startsWith(OPT_PATH)) {
-            String id = opt.substring(OPT_PATH.length());
-            CloningPaths.set(market, id);
-            CloningPaths.syncUpgrade(market);
-            showMain();
-        } else if (OPT_OFFICERS.equals(opt)) {
+        if (OPT_OFFICERS.equals(opt)) {
             dialog.getVisualPanel().fadeVisualOut();
             showOfficers();
         } else if (opt.startsWith(OPT_PICK)) {
