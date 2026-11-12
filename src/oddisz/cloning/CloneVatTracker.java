@@ -95,9 +95,10 @@ public class CloneVatTracker extends BaseCampaignEventListener implements EveryF
         refund = Math.min(refund, roomForCrew(cargo));
         if (refund <= 0) return;
         cargo.addCrew(refund);
+        String num = Misc.getWithDGS(refund);
         Global.getSector().getCampaignUI().addMessage(
-                "Clone Vats restored %s crew", Misc.getTextColor(),
-                Misc.getWithDGS(refund), null, Misc.getHighlightColor(), null);
+                "Clone Vats restored " + num + " crew", Misc.getTextColor(),
+                num, null, Misc.getHighlightColor(), null);
     }
 
     private static void cloneDaily(CampaignFleetAPI fleet) {
@@ -110,11 +111,12 @@ public class CloneVatTracker extends BaseCampaignEventListener implements EveryF
 
         CargoAPI cargo = fleet.getCargo();
         int food = (int) cargo.getCommodityQuantity(Commodities.FOOD);
-        int crew = Math.min(wanted, food / CloneVat.FOOD_PER_CREW);
+        int foodPerCrew = CloneVat.getFoodPerCrew();
+        int crew = foodPerCrew > 0 ? Math.min(wanted, food / foodPerCrew) : wanted;
         crew = Math.min(crew, roomForCrew(cargo));
         if (crew <= 0) return;
 
-        cargo.removeCommodity(Commodities.FOOD, crew * CloneVat.FOOD_PER_CREW);
+        if (foodPerCrew > 0) cargo.removeCommodity(Commodities.FOOD, crew * foodPerCrew);
         cargo.addCrew(crew);
     }
 }

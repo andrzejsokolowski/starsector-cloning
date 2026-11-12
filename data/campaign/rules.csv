@@ -8,3 +8,7 @@ Call $clnie_ref showMap ""Target: $clnie_systemName""","""These came out of the 
 contact_declineBarNoContinue:Decline",
 clnIEOrdoDefeated,ClnIEOrdoDefeated,,"$global.clnie_won = true
 Call $global.clnie_ref updateStage",Your salvage crews flag the wreck of the enemy flagship for a closer look.,,
+clnFacilitiesOpt,PopulateOptions,"$hasMarket
+$menuState == main
+CLN_CloningFacilities available",,,25:cln_facilities:Cloning facilities,
+clnFacilitiesSel,DialogOptionSelected,$option == cln_facilities,CLN_CloningFacilities open,,,

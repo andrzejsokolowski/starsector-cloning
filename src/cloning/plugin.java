@@ -13,7 +13,12 @@ import com.fs.starfarer.api.util.Misc;
 import lunalib.backend.ui.settings.LunaSettingsLoader;
 import lunalib.lunaSettings.LunaSettings;
 import lunalib.lunaSettings.LunaSettingsListener;
+import oddisz.cloning.CloningSettings;
 import oddisz.industries.BaseCloning;
+import oddisz.industries.BaseCloningBranch;
+import oddisz.industries.MarineSimCloning;
+import oddisz.industries.OrganFlashcloning;
+import com.fs.starfarer.api.impl.PlayerFleetPersonnelTracker;
 import org.lazywizard.lazylib.JSONUtils;
 
 import java.util.List;
@@ -30,20 +35,19 @@ public class plugin extends BaseModPlugin {
 
     private static final String BIOFACTORY_EMBRYO = "biofactory_embryo";
     private static final String PRISTINE_NANOFORGE = "pristine_nanoforge";
+    private static final String CRYOARITHMETIC_ENGINE = "cryoarithmetic_engine";
     private static final String MOD_ID = "oddisz_cloning";
 
     @Override
     public void onApplicationLoad() throws Exception {
-        String suffix = ", " + String.join(", ", CLONING_INDUSTRY_IDS);
-        for (String itemId : new String[]{ BIOFACTORY_EMBRYO, PRISTINE_NANOFORGE }) {
-            SpecialItemSpecAPI spec = Global.getSettings().getSpecialItemSpec(itemId);
-            if (spec != null) {
-                spec.setParams(spec.getParams() + suffix);
-            }
-        }
+        String chain = String.join(", ", CLONING_INDUSTRY_IDS);
+        addInstallableIn(BIOFACTORY_EMBRYO, chain + ", " + OrganFlashcloning.ID + ", " + MarineSimCloning.ID);
+        addInstallableIn(PRISTINE_NANOFORGE, chain + ", " + OrganFlashcloning.ID);
+        addInstallableIn(CRYOARITHMETIC_ENGINE, MarineSimCloning.ID);
 
         wrapEffect(BIOFACTORY_EMBRYO);
         wrapEffect(PRISTINE_NANOFORGE);
+        wrapEffect(CRYOARITHMETIC_ENGINE);
 
         if (!LunaSettings.hasSettingsListenerOfClass(ResetListener.class)) {
             LunaSettings.addSettingsListener(new ResetListener());
@@ -69,12 +73,19 @@ public class plugin extends BaseModPlugin {
                 Map<String, JSONUtils.CommonDataJSONObject> settingsMap = LunaSettingsLoader.getSettings();
                 JSONUtils.CommonDataJSONObject json = settingsMap.get(MOD_ID);
                 if (json != null) {
-                    json.put("baseGrowthTier1", 50);
-                    json.put("baseGrowthTier2", 125);
-                    json.put("baseGrowthTier3", 250);
-                    json.put("scalingFactor", 0.15);
-                    json.put("globalMult", 1.0);
-                    json.put("requireMission", true);
+                    // Every default comes from this mod's LunaSettings.csv, so new settings reset too.
+                    org.json.JSONArray rows = Global.getSettings().loadCSV("data/config/LunaSettings.csv", MOD_ID);
+                    for (int i = 0; i < rows.length(); i++) {
+                        org.json.JSONObject row = rows.getJSONObject(i);
+                        if (!MOD_ID.equals(row.optString("modID"))) continue;
+                        String field = row.optString("fieldID");
+                        String type = row.optString("fieldType");
+                        String def = row.optString("defaultValue");
+                        if (field.isEmpty() || def.isEmpty()) continue;
+                        if ("Int".equals(type)) json.put(field, Integer.parseInt(def.trim()));
+                        else if ("Double".equals(type)) json.put(field, Double.parseDouble(def.trim()));
+                        else if ("Boolean".equals(type)) json.put(field, Boolean.parseBoolean(def.trim()));
+                    }
                     json.put("resetToDefault", false);
                     json.save();
                 }
@@ -83,6 +94,14 @@ public class plugin extends BaseModPlugin {
             }
             LunaSettings.reportSettingsChanged(MOD_ID);
         }
+    }
+
+    /** Adds buildings to the list a colony item can be installed in. */
+    private static void addInstallableIn(String itemId, String ids) {
+        SpecialItemSpecAPI spec = Global.getSettings().getSpecialItemSpec(itemId);
+        if (spec == null) return;
+        String params = spec.getParams();
+        spec.setParams(params == null || params.trim().isEmpty() ? ids : params + ", " + ids);
     }
 
     private static void wrapEffect(String itemId) {
@@ -101,13 +120,16 @@ public class plugin extends BaseModPlugin {
             this.vanilla = vanilla;
         }
 
+        // The branch buildings read their items themselves; the vanilla effect (fleet size, farming output) stays off there.
         @Override
         public void apply(Industry industry) {
+            if (industry instanceof BaseCloningBranch) return;
             vanilla.apply(industry);
         }
 
         @Override
         public void unapply(Industry industry) {
+            if (industry instanceof BaseCloningBranch) return;
             vanilla.unapply(industry);
         }
 
@@ -115,16 +137,40 @@ public class plugin extends BaseModPlugin {
         public void addItemDescription(Industry industry, TooltipMakerAPI tooltip,
                                        SpecialItemData data,
                                        InstallableIndustryItemPlugin.InstallableItemDescriptionMode mode) {
+            float opad = 10f;
+            if (industry instanceof OrganFlashcloning) {
+                String organs = BIOFACTORY_EMBRYO.equals(itemId) ? "organEmbryoOrgans" : "organNanoforgeOrgans";
+                String stab = BIOFACTORY_EMBRYO.equals(itemId) ? "organEmbryoStability" : "organNanoforgeStability";
+                int dOrgans = BIOFACTORY_EMBRYO.equals(itemId) ? 2 : 3;
+                tooltip.addPara("Harvested organs %s, stability %s.", opad, Misc.getHighlightColor(),
+                        "+" + CloningSettings.getInt(organs, dOrgans), "+" + CloningSettings.getInt(stab, 1));
+                return;
+            }
+            if (industry instanceof MarineSimCloning) {
+                if (BIOFACTORY_EMBRYO.equals(itemId)) {
+                    tooltip.addPara("Marines %s.", opad, Misc.getHighlightColor(),
+                            "+" + CloningSettings.getInt("marineEmbryoBonus", 50) + "%");
+                } else {
+                    tooltip.addPara("New marines are %s on hot worlds and %s on worlds with extreme heat.", opad,
+                            Misc.getHighlightColor(),
+                            rank(CloningSettings.getInt("marineCryoHotXP", 65)),
+                            rank(CloningSettings.getInt("marineCryoVeryHotXP", 100)));
+                }
+                return;
+            }
             if (!(industry instanceof BaseCloning)) {
                 vanilla.addItemDescription(industry, tooltip, data, mode);
                 return;
             }
-            float opad = 10f;
             if (BIOFACTORY_EMBRYO.equals(itemId)) {
                 tooltip.addPara("Increases base population growth by %s.", opad, Misc.getHighlightColor(), "25%");
             } else if (PRISTINE_NANOFORGE.equals(itemId)) {
                 tooltip.addPara("Growth from cloning now scales with colony size. Scaling factor: %s.", opad, Misc.getHighlightColor(), "+0.10");
             }
+        }
+
+        private static String rank(int xp) {
+            return PlayerFleetPersonnelTracker.PersonnelRank.getRankForXP(Math.max(0, Math.min(100, xp)) / 100f).name;
         }
 
         @Override

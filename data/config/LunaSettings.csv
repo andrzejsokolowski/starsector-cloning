@@ -5,4 +5,46 @@ oddisz_cloning,baseGrowthTier3,Base Growth (Megafactory),Int,250,0,10000,Base po
 oddisz_cloning,scalingFactor,Scaling Factor,Double,0.15,0.0,2.0,Controls how much colony size amplifies growth. Higher values make large colonies grow much faster.,Cloning
 oddisz_cloning,globalMult,Global Multiplier,Double,1.0,0.0,10.0,Global multiplier applied to all cloning industry growth.,Cloning
 oddisz_cloning,requireMission,Unlock through the Inhuman Experiments mission,Boolean,true,,,When off: the cloning colony buildings and the Clone Vat hull mod are known from the start.,Cloning
-oddisz_cloning,resetToDefault,Reset to Default,Boolean,false,,,Resets all settings above to their default values when toggled on.,Cloning
+oddisz_cloning,organBaseBonus,Harvested organs: colony size plus,Int,1,-5,20,Organ Flashcloning supplies harvested organs equal to colony size plus this number.,Organ Flashcloning
+oddisz_cloning,organBaseStability,Stability,Int,1,0,10,Stability Organ Flashcloning adds to its colony.,Organ Flashcloning
+oddisz_cloning,organGammaOrgans,Gamma core: extra organs,Int,1,0,10,Extra harvested organs with a Gamma core.,Organ Flashcloning
+oddisz_cloning,organBetaOrgans,Beta core: extra organs,Int,1,0,10,Extra harvested organs with a Beta core.,Organ Flashcloning
+oddisz_cloning,organBetaStability,Beta core: extra stability,Int,1,0,10,Extra stability with a Beta core.,Organ Flashcloning
+oddisz_cloning,organAlphaOrgans,Alpha core: extra organs,Int,2,0,10,Extra harvested organs with an Alpha core.,Organ Flashcloning
+oddisz_cloning,organAlphaStability,Alpha core: extra stability,Int,1,0,10,Extra stability with an Alpha core.,Organ Flashcloning
+oddisz_cloning,organOmegaOrgans,Omega core: extra organs,Int,3,0,10,Extra harvested organs with an Omega core.,Organ Flashcloning
+oddisz_cloning,organOmegaStability,Omega core: extra stability,Int,2,0,10,Extra stability with an Omega core.,Organ Flashcloning
+oddisz_cloning,organImproveOrgans,Improved: extra organs,Int,1,0,10,Extra harvested organs after the story point improvement.,Organ Flashcloning
+oddisz_cloning,organImproveStability,Improved: extra stability,Int,1,0,10,Extra stability after the story point improvement.,Organ Flashcloning
+oddisz_cloning,organEmbryoOrgans,Biofactory Embryo: extra organs,Int,2,0,10,Extra harvested organs with a Biofactory Embryo installed.,Organ Flashcloning
+oddisz_cloning,organEmbryoStability,Biofactory Embryo: extra stability,Int,1,0,10,Extra stability with a Biofactory Embryo installed.,Organ Flashcloning
+oddisz_cloning,organNanoforgeOrgans,Pristine Nanoforge: extra organs,Int,3,0,10,Extra harvested organs with a Pristine Nanoforge installed.,Organ Flashcloning
+oddisz_cloning,organNanoforgeStability,Pristine Nanoforge: extra stability,Int,1,0,10,Extra stability with a Pristine Nanoforge installed.,Organ Flashcloning
+oddisz_cloning,marinesPerSize,Marines per month per colony size,Int,10,0,1000,"Marines put into the colony's storage every month, times colony size.",Marine Sim-Cloning
+oddisz_cloning,marineBaseXP,Marine experience,Int,30,0,100,"Experience of new marines, 0 to 100. 25 is Experienced, 50 Veteran, 75 or more Elite.",Marine Sim-Cloning
+oddisz_cloning,marineCryoHotXP,Cryoarithmetic Engine: experience on hot worlds,Int,65,0,100,Marine experience with a Cryoarithmetic Engine on a hot world.,Marine Sim-Cloning
+oddisz_cloning,marineCryoVeryHotXP,Cryoarithmetic Engine: experience on very hot worlds,Int,100,0,100,Marine experience with a Cryoarithmetic Engine on a world with extreme heat.,Marine Sim-Cloning
+oddisz_cloning,marineEmbryoBonus,Biofactory Embryo: more marines,Int,50,0,1000,"Extra marines with a Biofactory Embryo installed, in percent.",Marine Sim-Cloning
+oddisz_cloning,marineGammaBonus,Gamma core: more marines,Int,10,0,1000,"Extra marines with a Gamma core, in percent.",Marine Sim-Cloning
+oddisz_cloning,marineBetaBonus,Beta core: more marines,Int,25,0,1000,"Extra marines with a Beta core, in percent.",Marine Sim-Cloning
+oddisz_cloning,marineAlphaBonus,Alpha core: more marines,Int,50,0,1000,"Extra marines with an Alpha core, in percent.",Marine Sim-Cloning
+oddisz_cloning,marineOmegaBonus,Omega core: more marines,Int,100,0,1000,"Extra marines with an Omega core, in percent.",Marine Sim-Cloning
+oddisz_cloning,marineAlphaXP,Alpha core: extra experience,Int,10,0,100,Extra marine experience with an Alpha core.,Marine Sim-Cloning
+oddisz_cloning,marineOmegaXP,Omega core: extra experience,Int,25,0,100,Extra marine experience with an Omega core.,Marine Sim-Cloning
+oddisz_cloning,marineImproveBonus,Improved: more marines,Int,25,0,1000,"Extra marines after the story point improvement, in percent.",Marine Sim-Cloning
+oddisz_cloning,officerCloneCredits,Credits per clone,Int,25000,0,10000000,Base price of cloning an officer.,Officer Cloning
+oddisz_cloning,officerCloneCreditsPerLevel,Credits per officer level,Int,10000,0,10000000,Added to the price for every level of the officer.,Officer Cloning
+oddisz_cloning,officerCloneOrgans,Harvested organs per clone,Int,10,0,1000,Harvested organs taken from your fleet's cargo for each clone.,Officer Cloning
+oddisz_cloning,officerCloneKeepElite,Clones keep elite skills,Boolean,false,,,"When off, every elite skill of the original is a normal skill on the clone.",Officer Cloning
+oddisz_cloning,cloneSkillManeuver,Clone skill: less maneuverability,Int,15,0,90,"Maneuverability lost by a ship piloted by a clone, in percent.",Officer Cloning
+oddisz_cloning,cloneSkillAutofire,Clone skill: worse autofire aim,Int,25,0,100,"Autofire accuracy lost by a ship piloted by a clone, in percent.",Officer Cloning
+oddisz_cloning,vatRestoreFrigate,Crew restored: frigate,Int,10,0,100,"Share of lost crew a frigate's Clone Vat gives back, in percent.",Clone Vat
+oddisz_cloning,vatRestoreDestroyer,Crew restored: destroyer,Int,25,0,100,"Share of lost crew a destroyer's Clone Vat gives back, in percent.",Clone Vat
+oddisz_cloning,vatRestoreCruiser,Crew restored: cruiser,Int,50,0,100,"Share of lost crew a cruiser's Clone Vat gives back, in percent.",Clone Vat
+oddisz_cloning,vatRestoreCapital,Crew restored: capital,Int,100,0,100,"Share of lost crew a capital's Clone Vat gives back, in percent.",Clone Vat
+oddisz_cloning,vatCrewFrigate,"Built in, crew per day: frigate",Int,1,0,100,Crew a built-in Clone Vat on a frigate grows every day.,Clone Vat
+oddisz_cloning,vatCrewDestroyer,"Built in, crew per day: destroyer",Int,2,0,100,Crew a built-in Clone Vat on a destroyer grows every day.,Clone Vat
+oddisz_cloning,vatCrewCruiser,"Built in, crew per day: cruiser",Int,4,0,100,Crew a built-in Clone Vat on a cruiser grows every day.,Clone Vat
+oddisz_cloning,vatCrewCapital,"Built in, crew per day: capital",Int,8,0,100,Crew a built-in Clone Vat on a capital grows every day.,Clone Vat
+oddisz_cloning,vatFoodPerCrew,"Built in, food per crew",Int,2,0,100,Food used for every crew a built-in Clone Vat grows.,Clone Vat
+oddisz_cloning,resetToDefault,Reset to Default,Boolean,false,,,Resets every setting of this mod to its default value when toggled on.,Cloning

@@ -1,0 +1,2 @@
+id,name,order,tier,reqPoints,reqPointsPerExtraSkill,description,author,combat officer,admiral,admin,tags,icon,
+oddisz_clone,Clone,10200,0,,,Grown in a vat from another officer's neural map. Dimwitted next to the original: slower to react and slower to aim.,,TRUE,,,npc_only,graphics/icons/skills/cybernetic_augmentation.png,

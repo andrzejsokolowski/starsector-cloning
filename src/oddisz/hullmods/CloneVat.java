@@ -8,6 +8,7 @@ import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.impl.hullmods.BaseLogisticsHullMod;
 import com.fs.starfarer.api.ui.TooltipMakerAPI;
 import com.fs.starfarer.api.util.Misc;
+import oddisz.cloning.CloningSettings;
 
 /**
  * Clone Vat (logistics).
@@ -20,24 +21,26 @@ import com.fs.starfarer.api.util.Misc;
 public class CloneVat extends BaseLogisticsHullMod {
 
     public static final String ID = "oddisz_clone_vat";
-    public static final int FOOD_PER_CREW = 2;
+    public static int getFoodPerCrew() {
+        return Math.max(0, CloningSettings.getInt("vatFoodPerCrew", 2));
+    }
 
     public static float getRestoreFraction(HullSize size) {
         switch (size) {
-            case FRIGATE: return 0.10f;
-            case DESTROYER: return 0.25f;
-            case CRUISER: return 0.50f;
-            case CAPITAL_SHIP: return 1.00f;
+            case FRIGATE: return CloningSettings.getInt("vatRestoreFrigate", 10) / 100f;
+            case DESTROYER: return CloningSettings.getInt("vatRestoreDestroyer", 25) / 100f;
+            case CRUISER: return CloningSettings.getInt("vatRestoreCruiser", 50) / 100f;
+            case CAPITAL_SHIP: return CloningSettings.getInt("vatRestoreCapital", 100) / 100f;
             default: return 0f;
         }
     }
 
     public static int getDailyCrew(HullSize size) {
         switch (size) {
-            case FRIGATE: return 1;
-            case DESTROYER: return 2;
-            case CRUISER: return 4;
-            case CAPITAL_SHIP: return 8;
+            case FRIGATE: return CloningSettings.getInt("vatCrewFrigate", 1);
+            case DESTROYER: return CloningSettings.getInt("vatCrewDestroyer", 2);
+            case CRUISER: return CloningSettings.getInt("vatCrewCruiser", 4);
+            case CAPITAL_SHIP: return CloningSettings.getInt("vatCrewCapital", 8);
             default: return 0;
         }
     }
@@ -83,10 +86,10 @@ public class CloneVat extends BaseLogisticsHullMod {
 
     @Override
     public String getSModDescriptionParam(int index, HullSize hullSize) {
-        if (index == 0) return "" + getDailyCrew(HullSize.FRIGATE) * FOOD_PER_CREW;
-        if (index == 1) return "" + getDailyCrew(HullSize.DESTROYER) * FOOD_PER_CREW;
-        if (index == 2) return "" + getDailyCrew(HullSize.CRUISER) * FOOD_PER_CREW;
-        if (index == 3) return "" + getDailyCrew(HullSize.CAPITAL_SHIP) * FOOD_PER_CREW;
+        if (index == 0) return "" + getDailyCrew(HullSize.FRIGATE) * getFoodPerCrew();
+        if (index == 1) return "" + getDailyCrew(HullSize.DESTROYER) * getFoodPerCrew();
+        if (index == 2) return "" + getDailyCrew(HullSize.CRUISER) * getFoodPerCrew();
+        if (index == 3) return "" + getDailyCrew(HullSize.CAPITAL_SHIP) * getFoodPerCrew();
         if (index == 4) return "" + getDailyCrew(HullSize.FRIGATE);
         if (index == 5) return "" + getDailyCrew(HullSize.DESTROYER);
         if (index == 6) return "" + getDailyCrew(HullSize.CRUISER);

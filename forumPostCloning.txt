@@ -21,15 +21,28 @@ Adds a three-tier cloning industry that massively boosts population growth - at 
 [td][hr][center][size=12pt][b]Industry Chain[/b][/size][/center][hr]
 [list]
 [li]Adds a new industry, occupying an industry slot. Unlocked by finishing the bar mission [b]Inhuman Experiments[/b], or known from the start if you turn the mission off in LunaLib.[/li]
-[li]Three upgrade tiers, each producing more population growth than the last:
+[li][b]Clone Vat Experiments[/b] - entry-level, produces some population growth. Upgrades into one of three paths, picked at the colony's [b]Cloning facilities[/b] option:
 [list]
-[li][b]Clone Vat Experiments[/b] - entry-level, produces some population growth.[/li]
-[li][b]Cloning Industry[/b] - upgrade, produces more population growth.[/li]
-[li][b]Cloning Megafactory[/b] - top tier, produces a large amount of population growth. Tons of upkeep, credits and stability. Be prepared.[/li]
+[li][b]Cloning Industry[/b] - more population growth, then [b]Cloning Megafactory[/b] for a large amount. Tons of upkeep, credits and stability. Be prepared.[/li]
+[li][b]Organ Flashcloning[/b] - supplies harvested organs (colony size plus 1) and adds stability.[/li]
+[li][b]Marine Sim-Cloning[/b] - puts trained marines into the colony's storage every 30 days, and lets you clone officers.[/li]
 [/list][/li]
 [li]Growth scales with colony size when an Alpha or Omega core is installed, or when a pristine nanoforge is installed.[/li]
 [li]All tiers apply a stability penalty that scales with colony size - there are consequences for cutting corners on biology.[/li]
-[li]All tiers need harvested organs: colony size minus 2. A shortage cuts the growth and the crew and marine output by the same share.[/li]
+[li]The growth buildings and Marine Sim-Cloning need harvested organs: colony size minus 2. A shortage cuts their output by the same share.[/li]
+[/list]
+
+[hr][center][size=12pt][b]Organ Flashcloning[/b][/size][/center][hr]
+[list]
+[li]Supplies harvested organs (colony size plus 1) and adds 1 stability.[/li]
+[li]AI cores, the story point improvement, a Biofactory Embryo (+2 organs, +1 stability) or a Pristine Nanoforge (+3 organs, +1 stability) add more.[/li]
+[/list]
+
+[hr][center][size=12pt][b]Marine Sim-Cloning and officer cloning[/b][/size][/center][hr]
+[list]
+[li]Every 30 days puts 10 marines per colony size into the colony's storage, trained to Experienced.[/li]
+[li]Cryoarithmetic Engine: Veteran marines on hot worlds, Elite on worlds with extreme heat. Biofactory Embryo: +50% marines.[/li]
+[li]Officer cloning: pay credits and 10 harvested organs to copy an officer. The clone keeps the portrait, personality, level and skills, but elite skills become normal ones, and it has the Clone skill: -15% maneuverability and -25% autofire accuracy.[/li]
 [/list]
 
 [hr][center][size=12pt][b]Clone Vat hull mod[/b][/size][/center][hr]
@@ -45,12 +58,14 @@ Adds a three-tier cloning industry that massively boosts population growth - at 
 [li][b]Beta core[/b] - reduces upkeep and produces crew and marines alongside population growth.[/li]
 [li][b]Alpha core[/b] - reduces upkeep, produces crew and marines, and growth now scales with colony size.[/li]
 [li][b]Omega core[/b] [i](Astral Ascension)[/i] - all Alpha benefits, plus doubled colony size scaling. Expect extremely large numbers. Go wild.[/li]
+[li]Organ Flashcloning: every core reduces upkeep and adds organs; Beta and up add stability too (Omega: +3 organs, +2 stability).[/li]
+[li]Marine Sim-Cloning: every core reduces upkeep and adds marines; Alpha and Omega also train them better (Omega: +100% marines).[/li]
 [/list]
 
 [hr][center][size=12pt][b]Configuration[/b][/size][/center][hr]
 [list]
 [li]Uses [url=https://fractalsoftworks.com/forum/index.php?topic=21022.0]LunaLib[/url] for in-game settings.[/li]
-[li]Configurable values: base growth per tier, colony size scaling factor, a global multiplier, and whether cloning needs the Inhuman Experiments mission.[/li]
+[li]Configurable values, in tabs: base growth per tier, colony size scaling factor, a global multiplier, whether cloning needs the Inhuman Experiments mission, every Organ Flashcloning, Marine Sim-Cloning, officer cloning and Clone Vat number.[/li]
 [li]Players without LunaLib will use the built-in defaults.[/li]
 [/list]
 [/td][/tr][/table][/center]
@@ -95,4 +110,11 @@ Beating the clone fleet now opens a scene of its own after the battle that shows
 0.5.0
 Cloning colony buildings now need harvested organs: colony size minus 2. A shortage cuts population growth and the crew and marine output by the same share.
 The discovery scene and the building descriptions now mention the specialized nanoforge that weaves biological matter.
+0.6.0
+Clone Vat Experiments can now upgrade into one of three buildings, picked at the colony's new Cloning facilities option: Cloning Industry, Organ Flashcloning or Marine Sim-Cloning.
+New building Organ Flashcloning: supplies harvested organs (colony size plus 1) and adds 1 stability. AI cores (Omega too), the story point improvement, a Biofactory Embryo or a Pristine Nanoforge add more of both.
+New building Marine Sim-Cloning: puts 10 marines per colony size into the colony's storage every 30 days, trained to Experienced. A Cryoarithmetic Engine trains them to Veteran on hot worlds and Elite on worlds with extreme heat. A Biofactory Embryo, AI cores (Omega too) and the improvement add more marines. Needs harvested organs.
+Officer cloning at colonies with Marine Sim-Cloning: pay credits and harvested organs for a copy of an officer with the same portrait, personality and skills, but no elite skills, plus the new Clone skill (less maneuverability, worse autofire aim).
+New LunaLib tabs: Organ Flashcloning, Marine Sim-Cloning, Officer Cloning and Clone Vat. Reset to Default now resets every setting.
+Rewrote the Clone Vat Experiments and Cloning Industry descriptions.
 [/spoiler]

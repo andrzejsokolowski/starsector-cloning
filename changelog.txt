@@ -1,3 +1,11 @@
+Version 0.6.0 (2026-11-12)
+- Clone Vat Experiments can now upgrade into one of three buildings, picked at the colony's new Cloning facilities option: Cloning Industry, Organ Flashcloning or Marine Sim-Cloning.
+- New building Organ Flashcloning: supplies harvested organs (colony size plus 1) and adds 1 stability. AI cores (Omega too), the story point improvement, a Biofactory Embryo or a Pristine Nanoforge add more of both.
+- New building Marine Sim-Cloning: puts 10 marines per colony size into the colony's storage every 30 days, trained to Experienced. A Cryoarithmetic Engine trains them to Veteran on hot worlds and Elite on worlds with extreme heat. A Biofactory Embryo, AI cores (Omega too) and the improvement add more marines. Needs harvested organs.
+- Officer cloning at colonies with Marine Sim-Cloning: pay credits and harvested organs for a copy of an officer with the same portrait, personality and skills, but no elite skills, plus the new Clone skill (less maneuverability, worse autofire aim).
+- New LunaLib tabs: Organ Flashcloning, Marine Sim-Cloning, Officer Cloning and Clone Vat. Reset to Default now resets every setting.
+- Rewrote the Clone Vat Experiments and Cloning Industry descriptions.
+
 Version 0.5.0 (2026-11-12)
 - Cloning colony buildings now need harvested organs: colony size minus 2. A shortage cuts population growth and the crew and marine output by the same share.
 - The discovery scene and the building descriptions now mention the specialized nanoforge that weaves biological matter.
