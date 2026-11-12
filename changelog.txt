@@ -1,3 +1,7 @@
+Version 0.4.0 (2026-11-12)
+- New LunaLib setting: Unlock through the Inhuman Experiments mission. When off, the cloning colony buildings and the Clone Vat hull mod are known from the start.
+- Beating the clone fleet now opens a scene of its own after the battle that shows what you found and what you gained.
+
 Version 0.3.0 (2026-11-11)
 - New hull mod Clone Vat (logistics, 4/10/25/40 OP): restores 10/25/50/100 percent of the crew lost in a battle, depending on hull size. The vats of every ship in the fleet add up, to at most 100 percent.
 - Clone Vat built in (S-mod): every day turns 2/4/8/16 food into 1/2/4/8 crew while the fleet has food and room for crew.

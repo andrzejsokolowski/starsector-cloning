@@ -54,12 +54,14 @@ public class plugin extends BaseModPlugin {
     public void onGameLoad(boolean newGame) {
         oddisz.cloning.CloneVatTracker.register();
         oddisz.cloning.CloningUnlock.unlockIfAlreadyBuilt();
+        oddisz.cloning.CloningUnlock.unlockIfMissionOff();
     }
 
     private static class ResetListener implements LunaSettingsListener {
         @Override
         public void settingsChanged(String modId) {
             if (!MOD_ID.equals(modId)) return;
+            oddisz.cloning.CloningUnlock.unlockIfMissionOff();
             Boolean reset = LunaSettings.getBoolean(MOD_ID, "resetToDefault");
             if (reset == null || !reset) return;
 
@@ -72,6 +74,7 @@ public class plugin extends BaseModPlugin {
                     json.put("baseGrowthTier3", 250);
                     json.put("scalingFactor", 0.15);
                     json.put("globalMult", 1.0);
+                    json.put("requireMission", true);
                     json.put("resetToDefault", false);
                     json.save();
                 }

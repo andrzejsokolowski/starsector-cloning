@@ -7,4 +7,4 @@ Call $clnie_ref showMap ""Target: $clnie_systemName""","""These came out of the 
 ""I want to know who. Whatever you find there is yours.""","contact_acceptBar:Accept
 contact_declineBarNoContinue:Decline",
 clnIEOrdoDefeated,ClnIEOrdoDefeated,,"$global.clnie_won = true
-Call $global.clnie_ref updateStage",,,
+Call $global.clnie_ref updateStage",Your salvage crews flag the wreck of the enemy flagship for a closer look.,,

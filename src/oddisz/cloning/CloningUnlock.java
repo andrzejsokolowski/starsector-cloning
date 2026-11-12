@@ -34,6 +34,21 @@ public final class CloningUnlock {
         }
     }
 
+    /** LunaLib "requireMission" off: everything is known at once. */
+    public static boolean isMissionRequired() {
+        try {
+            Boolean v = lunalib.lunaSettings.LunaSettings.getBoolean("oddisz_cloning", "requireMission");
+            return v == null || v;
+        } catch (Throwable t) {
+            return true;
+        }
+    }
+
+    public static void unlockIfMissionOff() {
+        if (Global.getSector() == null || Global.getSector().getPlayerFleet() == null) return;
+        if (!isMissionRequired()) unlock();
+    }
+
     /** Saves from before the unlock existed: a player colony that already has a cloning building keeps it all. */
     public static void unlockIfAlreadyBuilt() {
         if (Global.getSector() == null || isUnlocked()) return;

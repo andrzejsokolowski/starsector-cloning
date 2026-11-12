@@ -261,17 +261,7 @@ public class InhumanExperiments extends HubMissionWithBarEvent {
     @Override
     protected void endSuccessImpl(InteractionDialogAPI dialog, Map<String, MemoryAPI> memoryMap) {
         CloningUnlock.unlock();
-        Color good = Misc.getPositiveHighlightColor();
-        if (dialog != null) {
-            TextPanelAPI text = dialog.getTextPanel();
-            text.setFontSmallInsignia();
-            text.addPara("Learned hull mod: Clone Vat", good);
-            text.addPara("Cloning colony buildings unlocked", good);
-            text.setFontInsignia();
-        } else {
-            Global.getSector().getCampaignUI().addMessage("Learned hull mod: Clone Vat", good);
-            Global.getSector().getCampaignUI().addMessage("Cloning colony buildings unlocked", good);
-        }
+        CloneDiscoveryDialog.queue();
     }
 
     @Override
