@@ -20,10 +20,9 @@ oddisz_cloning,organEmbryoOrgans,Biofactory Embryo: extra organs,Int,2,0,10,Extr
 oddisz_cloning,organEmbryoStability,Biofactory Embryo: extra stability,Int,1,0,10,Extra stability with a Biofactory Embryo installed.,Organ Flashcloning
 oddisz_cloning,organNanoforgeOrgans,Pristine Nanoforge: extra organs,Int,3,0,10,Extra harvested organs with a Pristine Nanoforge installed.,Organ Flashcloning
 oddisz_cloning,organNanoforgeStability,Pristine Nanoforge: extra stability,Int,1,0,10,Extra stability with a Pristine Nanoforge installed.,Organ Flashcloning
-oddisz_cloning,marinesPerSize,Marines per month per colony size,Int,10,0,1000,"Marines put into the colony's storage every month, times colony size.",Marine Sim-Cloning
-oddisz_cloning,marineBaseXP,Marine experience,Int,30,0,100,"Experience of new marines, 0 to 100. 25 is Experienced, 50 Veteran, 75 or more Elite.",Marine Sim-Cloning
-oddisz_cloning,marineCryoHotXP,Cryoarithmetic Engine: experience on hot worlds,Int,65,0,100,Marine experience with a Cryoarithmetic Engine on a hot world.,Marine Sim-Cloning
-oddisz_cloning,marineCryoVeryHotXP,Cryoarithmetic Engine: experience on very hot worlds,Int,100,0,100,Marine experience with a Cryoarithmetic Engine on a world with extreme heat.,Marine Sim-Cloning
+oddisz_cloning,marinesPerSize,Marines per batch per colony size,Int,10,0,1000,"Marines put into the colony's storage with each batch (every 30 days, less with AI cores), times colony size.",Marine Sim-Cloning
+oddisz_cloning,marineCryoHotExtraXP,Cryoarithmetic Engine: extra experience on hot worlds,Int,40,0,100,"Extra marine experience with a Cryoarithmetic Engine on a hot world. Marines start at 0 (Regular); 25 is Experienced, 50 Veteran, 75 or more Elite.",Marine Sim-Cloning
+oddisz_cloning,marineCryoVeryHotExtraXP,Cryoarithmetic Engine: extra experience on very hot worlds,Int,75,0,100,Extra marine experience with a Cryoarithmetic Engine on a world with extreme heat.,Marine Sim-Cloning
 oddisz_cloning,marineEmbryoBonus,Biofactory Embryo: more marines,Int,50,0,1000,"Extra marines with a Biofactory Embryo installed, in percent.",Marine Sim-Cloning
 oddisz_cloning,marineGammaBonus,Gamma core: more marines,Int,10,0,1000,"Extra marines with a Gamma core, in percent.",Marine Sim-Cloning
 oddisz_cloning,marineBetaBonus,Beta core: more marines,Int,25,0,1000,"Extra marines with a Beta core, in percent.",Marine Sim-Cloning
@@ -31,7 +30,12 @@ oddisz_cloning,marineAlphaBonus,Alpha core: more marines,Int,50,0,1000,"Extra ma
 oddisz_cloning,marineOmegaBonus,Omega core: more marines,Int,100,0,1000,"Extra marines with an Omega core, in percent.",Marine Sim-Cloning
 oddisz_cloning,marineAlphaXP,Alpha core: extra experience,Int,10,0,100,Extra marine experience with an Alpha core.,Marine Sim-Cloning
 oddisz_cloning,marineOmegaXP,Omega core: extra experience,Int,25,0,100,Extra marine experience with an Omega core.,Marine Sim-Cloning
+oddisz_cloning,marineGammaFaster,Gamma core: faster batches,Int,10,0,95,"Shorter time between marine batches with a Gamma core, in percent of 30 days.",Marine Sim-Cloning
+oddisz_cloning,marineBetaFaster,Beta core: faster batches,Int,20,0,95,"Shorter time between marine batches with a Beta core, in percent of 30 days.",Marine Sim-Cloning
+oddisz_cloning,marineAlphaFaster,Alpha core: faster batches,Int,33,0,95,"Shorter time between marine batches with an Alpha core, in percent of 30 days.",Marine Sim-Cloning
+oddisz_cloning,marineOmegaFaster,Omega core: faster batches,Int,66,0,95,"Shorter time between marine batches with an Omega core, in percent of 30 days.",Marine Sim-Cloning
 oddisz_cloning,marineImproveBonus,Improved: more marines,Int,25,0,1000,"Extra marines after the story point improvement, in percent.",Marine Sim-Cloning
+oddisz_cloning,marineImproveXP,Improved: extra experience,Int,10,0,100,Extra marine experience after the story point improvement.,Marine Sim-Cloning
 oddisz_cloning,officerCloneCredits,Credits per clone,Int,25000,0,10000000,Base price of cloning an officer.,Officer Cloning
 oddisz_cloning,officerCloneCreditsPerLevel,Credits per officer level,Int,10000,0,10000000,Added to the price for every level of the officer.,Officer Cloning
 oddisz_cloning,officerCloneOrgans,Harvested organs per clone,Int,10,0,1000,Harvested organs taken from your fleet's cargo for each clone.,Officer Cloning

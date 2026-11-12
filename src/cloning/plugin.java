@@ -18,7 +18,6 @@ import oddisz.industries.BaseCloning;
 import oddisz.industries.BaseCloningBranch;
 import oddisz.industries.MarineSimCloning;
 import oddisz.industries.OrganFlashcloning;
-import com.fs.starfarer.api.impl.PlayerFleetPersonnelTracker;
 import org.lazywizard.lazylib.JSONUtils;
 
 import java.util.List;
@@ -152,10 +151,10 @@ public class plugin extends BaseModPlugin {
                     tooltip.addPara("Marines %s.", opad, Misc.getHighlightColor(),
                             "+" + CloningSettings.getInt("marineEmbryoBonus", 50) + "%");
                 } else {
-                    tooltip.addPara("New marines are %s on hot worlds and %s on worlds with extreme heat.", opad,
+                    tooltip.addPara("Marine experience %s on hot worlds and %s on worlds with extreme heat.", opad,
                             Misc.getHighlightColor(),
-                            rank(CloningSettings.getInt("marineCryoHotXP", 65)),
-                            rank(CloningSettings.getInt("marineCryoVeryHotXP", 100)));
+                            "+" + CloningSettings.getInt("marineCryoHotExtraXP", 40),
+                            "+" + CloningSettings.getInt("marineCryoVeryHotExtraXP", 75));
                 }
                 return;
             }
@@ -168,10 +167,6 @@ public class plugin extends BaseModPlugin {
             } else if (PRISTINE_NANOFORGE.equals(itemId)) {
                 tooltip.addPara("Growth from cloning now scales with colony size. Scaling factor: %s.", opad, Misc.getHighlightColor(), "+0.10");
             }
-        }
-
-        private static String rank(int xp) {
-            return PlayerFleetPersonnelTracker.PersonnelRank.getRankForXP(Math.max(0, Math.min(100, xp)) / 100f).name;
         }
 
         @Override

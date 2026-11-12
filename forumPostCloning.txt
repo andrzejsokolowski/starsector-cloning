@@ -25,7 +25,7 @@ Adds a three-tier cloning industry that massively boosts population growth - at 
 [list]
 [li][b]Cloning Industry[/b] - more population growth, then [b]Cloning Megafactory[/b] for a large amount. Tons of upkeep, credits and stability. Be prepared.[/li]
 [li][b]Organ Flashcloning[/b] - supplies harvested organs (colony size plus 1) and adds stability.[/li]
-[li][b]Marine Sim-Cloning[/b] - puts trained marines into the colony's storage every 30 days, and lets you clone officers at the colony's [b]Cloning facilities[/b] option.[/li]
+[li][b]Marine Sim-Cloning[/b] - puts marines into the colony's storage every 30 days (less with AI cores), and lets you clone officers at the colony's [b]Cloning facilities[/b] option.[/li]
 [/list][/li]
 [li]Growth scales with colony size when an Alpha or Omega core is installed, or when a pristine nanoforge is installed.[/li]
 [li]All tiers apply a stability penalty that scales with colony size - there are consequences for cutting corners on biology.[/li]
@@ -40,8 +40,9 @@ Adds a three-tier cloning industry that massively boosts population growth - at 
 
 [hr][center][size=12pt][b]Marine Sim-Cloning and officer cloning[/b][/size][/center][hr]
 [list]
-[li]Every 30 days puts 10 marines per colony size into the colony's storage, trained to Experienced.[/li]
-[li]Cryoarithmetic Engine: Veteran marines on hot worlds, Elite on worlds with extreme heat. Biofactory Embryo: +50% marines.[/li]
+[li]Every 30 days puts 10 marines per colony size into the colony's storage, as Regulars.[/li]
+[li]Upgrades train them: the improvement +10 experience, Alpha core +10, Omega core +25, Cryoarithmetic Engine +40 on hot worlds and +75 on worlds with extreme heat (25 is Experienced, 50 Veteran, 75 Elite). Biofactory Embryo: +50% marines.[/li]
+[li]AI cores shorten the time between batches: Gamma 27 days, Beta 24, Alpha 20, Omega 10.[/li]
 [li]Officer cloning: pay credits and 10 harvested organs to copy an officer. The clone keeps the portrait, personality, level and skills, but elite skills become normal ones, and it has the Clone skill: -15% maneuverability and -25% autofire accuracy.[/li]
 [/list]
 
@@ -122,4 +123,8 @@ Fixed: picking Organ Flashcloning or Marine Sim-Cloning as the upgrade built Clo
 Clone Vat Experiments no longer has a fixed upgrade. With Building Menu Overhaul, Choose Upgrade lists all three paths. Without it, the building's menu has an Upgrade entry for each path and a Cancel upgrade entry.
 The Cloning facilities option now only appears with Marine Sim-Cloning, for officer cloning.
 The clone of you now always captains the largest ship of the clone fleet.
+1.0.0
+Marine Sim-Cloning without upgrades now puts out Regular marines. Experience only comes from upgrades: the story point improvement (+10), an Alpha core (+10), an Omega core (+25) and a Cryoarithmetic Engine (+40 on hot worlds, +75 on worlds with extreme heat). 25 is Experienced, 50 Veteran, 75 Elite.
+AI cores now shorten the time between marine batches: Gamma every 27 days, Beta every 24, Alpha every 20, Omega every 10.
+Organ Flashcloning and Marine Sim-Cloning have their own pictures.
 [/spoiler]

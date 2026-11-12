@@ -1,3 +1,8 @@
+Version 1.0.0 (2026-11-12)
+- Marine Sim-Cloning without upgrades now puts out Regular marines. Experience only comes from upgrades: the story point improvement (+10), an Alpha core (+10), an Omega core (+25) and a Cryoarithmetic Engine (+40 on hot worlds, +75 on worlds with extreme heat). 25 is Experienced, 50 Veteran, 75 Elite.
+- AI cores now shorten the time between marine batches: Gamma every 27 days, Beta every 24, Alpha every 20, Omega every 10.
+- Organ Flashcloning and Marine Sim-Cloning have their own pictures.
+
 Version 0.6.1 (2026-11-12)
 - Fixed: picking Organ Flashcloning or Marine Sim-Cloning as the upgrade built Cloning Industry instead.
 - Clone Vat Experiments no longer has a fixed upgrade. With Building Menu Overhaul, Choose Upgrade lists all three paths. Without it, the building's menu has an Upgrade entry for each path and a Cancel upgrade entry.
