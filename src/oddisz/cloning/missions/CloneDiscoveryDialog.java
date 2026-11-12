@@ -67,8 +67,9 @@ public class CloneDiscoveryDialog implements InteractionDialogPlugin {
 
         text.addPara("\"Captain, we found something!\"");
         text.addPara("The salvage team's leader is out of breath on the comm. The clone flagship carried "
-                + "a full lab behind its reactor: rows of growth vats, most of them empty, and a data core "
-                + "packed with medical logs, neural maps and growth cycles.");
+                + "a full lab behind its reactor: rows of growth vats, most of them empty, fed by a specialized "
+                + "nanoforge. It does not print hull plating. It weaves living tissue, cell by cell. "
+                + "A data core next to it is packed with medical logs, neural maps and growth cycles.");
         text.addPara("\"Some of these maps are yours, Captain. And the officers'. That's how they made them.\"");
 
         options.clearOptions();
@@ -79,10 +80,10 @@ public class CloneDiscoveryDialog implements InteractionDialogPlugin {
         if (optionText != null) text.addParagraph(optionText, Global.getSettings().getColor("buttonText"));
 
         if (OPT_LOOK.equals(optionData)) {
-            text.addPara("Your science team spends the next day pulling the data core apart. The vats are "
-                    + "ordinary medical tanks, rebuilt to grow an adult body in weeks. The neural maps do "
-                    + "the rest. The method copies over cleanly to colony-scale equipment, and a smaller "
-                    + "version fits aboard a ship.");
+            text.addPara("Your science team spends the next day pulling the data core apart. The nanoforge "
+                    + "weaves biological matter the way a normal one weaves alloys, and the vats grow it "
+                    + "into an adult body in weeks. The neural maps do the rest. The method copies over "
+                    + "cleanly to colony-scale equipment, and a smaller version fits aboard a ship.");
 
             Color good = Misc.getPositiveHighlightColor();
             text.setFontSmallInsignia();

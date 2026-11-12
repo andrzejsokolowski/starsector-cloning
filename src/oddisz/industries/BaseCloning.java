@@ -27,6 +27,7 @@ public abstract class BaseCloning extends BaseIndustry implements MarketImmigrat
     private static final double NANOFORGE_SCALING_BONUS = 0.10;
 
     private static final double DEFAULT_SCALING_FACTOR = 0.15;
+    private static final int ORGAN_DEMAND_OFFSET = 2;
     private static final double DEFAULT_GLOBAL_MULT = 1.0;
 
     protected abstract String getBaseGrowthFieldId();
@@ -82,7 +83,23 @@ public abstract class BaseCloning extends BaseIndustry implements MarketImmigrat
             result = base * globalMult;
         }
         if (hasBiofactoryEmbryo()) result *= BIOFACTORY_GROWTH_MULT;
+        result *= getOrganSupplyFraction();
         return (int) Math.round(result);
+    }
+
+    // --- Harvested organs: colony size - 2, a shortage cuts the output in the same share ---
+
+    protected int getOrganDemand() {
+        return Math.max(0, market.getSize() - ORGAN_DEMAND_OFFSET);
+    }
+
+    /** 1 with every organ delivered, 0 with none. */
+    protected float getOrganSupplyFraction() {
+        int demand = getOrganDemand();
+        if (demand <= 0) return 1f;
+        int missing = getMaxDeficit(Commodities.ORGANS).two;
+        float f = (demand - missing) / (float) demand;
+        return Math.max(0f, Math.min(1f, f));
     }
 
     private static int getIntSetting(String fieldId, int defaultValue) {
@@ -235,6 +252,8 @@ public abstract class BaseCloning extends BaseIndustry implements MarketImmigrat
     public void apply() {
         super.apply(true);
 
+        demand(Commodities.ORGANS, getOrganDemand());
+
         if (!isFunctional()) return;
 
         String coreId = getAICoreId();
@@ -243,6 +262,7 @@ public abstract class BaseCloning extends BaseIndustry implements MarketImmigrat
                 || OMEGA_CORE.equals(coreId)) {
             supply(Commodities.CREW, computeCrewProduction());
             supply(Commodities.MARINES, computeMarinesProduction());
+            applyDeficitToProduction(1, getMaxDeficit(Commodities.ORGANS), Commodities.CREW, Commodities.MARINES);
         }
 
         market.addImmigrationModifier(this);
@@ -302,6 +322,12 @@ public abstract class BaseCloning extends BaseIndustry implements MarketImmigrat
         if (hasPristineNanoforge()) {
             tooltip.addPara(String.format("Pristine Nanoforge: scaling factor +%.2f", NANOFORGE_SCALING_BONUS),
                     Misc.getPositiveHighlightColor(), pad);
+        }
+
+        float organs = getOrganSupplyFraction();
+        if (organs < 1f) {
+            tooltip.addPara(String.format("Harvested organs shortage: output -%d%%", Math.round((1f - organs) * 100f)),
+                    Misc.getNegativeHighlightColor(), pad);
         }
 
         tooltip.addPara("Stability: -" + size + " (scales with colony size)",

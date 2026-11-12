@@ -1,3 +1,7 @@
+Version 0.5.0 (2026-11-12)
+- Cloning colony buildings now need harvested organs: colony size minus 2. A shortage cuts population growth and the crew and marine output by the same share.
+- The discovery scene and the building descriptions now mention the specialized nanoforge that weaves biological matter.
+
 Version 0.4.0 (2026-11-12)
 - New LunaLib setting: Unlock through the Inhuman Experiments mission. When off, the cloning colony buildings and the Clone Vat hull mod are known from the start.
 - Beating the clone fleet now opens a scene of its own after the battle that shows what you found and what you gained.

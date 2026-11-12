@@ -29,6 +29,7 @@ Adds a three-tier cloning industry that massively boosts population growth - at 
 [/list][/li]
 [li]Growth scales with colony size when an Alpha or Omega core is installed, or when a pristine nanoforge is installed.[/li]
 [li]All tiers apply a stability penalty that scales with colony size - there are consequences for cutting corners on biology.[/li]
+[li]All tiers need harvested organs: colony size minus 2. A shortage cuts the growth and the crew and marine output by the same share.[/li]
 [/list]
 
 [hr][center][size=12pt][b]Clone Vat hull mod[/b][/size][/center][hr]
@@ -91,4 +92,7 @@ The cloning colony buildings now need that unlock. Saves that already have a clo
 0.4.0
 New LunaLib setting: Unlock through the Inhuman Experiments mission. When off, the cloning colony buildings and the Clone Vat hull mod are known from the start.
 Beating the clone fleet now opens a scene of its own after the battle that shows what you found and what you gained.
+0.5.0
+Cloning colony buildings now need harvested organs: colony size minus 2. A shortage cuts population growth and the crew and marine output by the same share.
+The discovery scene and the building descriptions now mention the specialized nanoforge that weaves biological matter.
 [/spoiler]
