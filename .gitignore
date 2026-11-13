@@ -1,16 +1,18 @@
 # Gradle
 .gradle/
 build/
-.claude/
-./planning
 
-# Compiled output
+# Compiled output from IDEs
 out/
-build/
+bin/
 
 # IntelliJ
 .idea/
 *.iml
+
+# Claude Code local settings and planning notes
+.claude/
+/planning/
 
 # Local build config (each dev sets their own path)
 gradle.properties
