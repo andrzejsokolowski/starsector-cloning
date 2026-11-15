@@ -2,14 +2,14 @@
   "id": "oddisz_cloning",
   "name": "Cloning",
   "author": "Oddisz",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Adds the cloning industry, which massively increases population growth on a planet. Due to lacking research about post-collapse biotechnology, clones are less healthy and more prone to acts of violence. As a result, Cloning gives an increasing big stability penalty. Unlocked by the Inhuman Experiments bar mission, together with the Clone Vat hull mod.",
-  "gameVersion": "0.98a-RC8",
+  "gameVersion": "0.98.5a-RC4",
   "jars": ["jars/cloning.jar"],
   "modPlugin": "cloning.plugin",
   "modThreadId": "35130",
   "updateCheckURL": "https://raw.githubusercontent.com/andrzejsokolowski/starsector-cloning/main/cloning.version",
-  "originalGameVersion": "0.98a-RC8",
+  "originalGameVersion": "0.98.5a-RC4",
   "dependencies": [
     {
       "id": "lunalib",
