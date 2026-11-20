@@ -4,7 +4,7 @@
 [/center]
 
 [center][b]
-Ever installed Astral Ascension but found you would need to wait years for a size 9 colony in the first place?
+Ever installed a mod that lets colonies grow past size 10, but found you would need to wait years for a size 9 colony in the first place?
 Ever wanted to see those cool multipliers from having a [i]Fractal Ecumenopolis[/i] - whatever that is, because you've never seen it without using console commands?
 Ever installed Vulpoids and saw your celebrities produce 0.6% growth on a size 8?
 
@@ -64,7 +64,7 @@ Adds a three-tier cloning industry that massively boosts population growth - at 
 [li][b]Gamma core[/b] - reduces upkeep. Cloning is expensive; every bit helps.[/li]
 [li][b]Beta core[/b] - reduces upkeep and produces crew and marines alongside population growth.[/li]
 [li][b]Alpha core[/b] - reduces upkeep, produces crew and marines, and growth now scales with colony size.[/li]
-[li][b]Omega core[/b] [i](Astral Ascension)[/i] - all Alpha benefits, plus doubled colony size scaling. Expect extremely large numbers. Go wild.[/li]
+[li][b]Omega core[/b] [i](drops with Omega Core Everywhere or Colonial Hypergrowth)[/i] - all Alpha benefits, plus doubled colony size scaling. Expect extremely large numbers. Go wild.[/li]
 [li]Organ Flashcloning: every core reduces upkeep and adds organs; Beta and up add stability too (Omega: +3 organs, +2 stability).[/li]
 [li]Marine Sim-Cloning: every core reduces upkeep and adds marines; Alpha and Omega also train them better (Omega: +100% marines).[/li]
 [/list]

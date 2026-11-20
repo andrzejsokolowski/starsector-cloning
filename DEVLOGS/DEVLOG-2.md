@@ -16,7 +16,7 @@ Overrode the vanilla AI core system in `BaseCloning` to give each tier custom be
 | Gamma | -25% | Flat base | No |
 | Beta | -10% | Flat base | Yes (scales with size) |
 | Alpha | -25% | Scales with colony size | Yes (scales with size) |
-| Omega *(Astral Ascension)* | -50% | Scales with colony size (2× factor) | Yes (scales with size) |
+| Omega | -50% | Scales with colony size (2× factor) | Yes (scales with size) |
 
 **Key methods overridden:**
 - `applyAICoreToIncomeAndUpkeep()` — custom upkeep multipliers
@@ -30,11 +30,11 @@ Overrode the vanilla AI core system in `BaseCloning` to give each tier custom be
 
 ---
 
-### Omega Core (Astral Ascension)
+### Omega Core
 
-Omega core ID is `omega_core` (from Astral Ascension's `commodities.csv`).
+Omega core ID is `omega_core` (the base game's commodity, tagged `ai_core`).
 
-No mod detection needed — `OMEGA_CORE` is a plain string constant. If Astral Ascension is absent, `getAICoreId()` can never return `"omega_core"`, so all omega branches are simply dead code. Zero crash risk.
+No mod detection needed — `OMEGA_CORE` is a plain string constant. Without an Omega core installed, `getAICoreId()` never returns `"omega_core"`, so all omega branches are simply dead code. Zero crash risk.
 
 The omega growth formula doubles `scalingFactor`:
 ```java
